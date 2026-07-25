@@ -65,3 +65,23 @@
   follow-up advisory lookup could not be independently completed because the
   registry network request was not authorized. No automatic dependency upgrade
   was applied.
+
+## 2026-07-25
+
+- Expanded the high-recall discovery registry with 24 English/Chinese GitHub
+  Search queries (50 results each) and a bounded hydration queue. The registry
+  now contains 893 records, 890 GitHub-verified; a 50-record incremental
+  refresh completed without API errors.
+- The public snapshot applies an explicit metadata-only education-signal gate:
+  298 education-facing records are published from the larger discovery pool.
+  This prevents a transient query match from automatically becoming a featured
+  educational project while retaining discovery evidence for later review.
+- Rebuilt the React UI with English/Chinese switching, full-width card previews,
+  complete GitHub social-preview fallback, homepage links, and a bilingual
+  curator-submission form. A third-party anonymous screenshot endpoint was
+  tested and rejected because it served a paid-account placeholder; no broken
+  homepage previews are published.
+- Added `migrations/002_project_suggestions.sql` and a server-only Postgres API
+  route. Repository suggestions are pending until GitHub metadata verification;
+  learning goals are private and have no public read path. No managed database
+  or Vercel deployment was provisioned.

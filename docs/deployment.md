@@ -10,9 +10,10 @@ created by this task.
 
 Use a two-stage launch:
 
-1. **Day-one public page:** deploy the generated `site/` directory as a static,
-   read-only snapshot. This is operationally smallest and has no database secret
-   or GitHub token in the browser.
+1. **Day-one public page:** deploy the Next.js application from `web/` as a
+   read-only snapshot. This is operationally small and has no database secret
+   or GitHub token in the browser. In the standalone Radar repository, Vercel's
+   Root Directory is `web`.
 2. **Database-backed update:** provision Neon Postgres through the Vercel
    Marketplace, run `migrations/001_init.sql`, import the JSONL snapshot, and
    expose a small cached read-only API. Run crawling as a scheduled worker, not
@@ -66,7 +67,8 @@ Official references:
 
 1. Provision one database in the same/near region as Vercel Functions.
 2. Save both pooled and direct URLs as sensitive environment variables.
-3. Apply `migrations/001_init.sql` with the direct URL.
+3. Apply `migrations/001_init.sql` and `migrations/002_project_suggestions.sql`
+   with the direct URL.
 4. Convert `registry.jsonl` into transactional UPSERTs keyed by
    `github_repo_id`; write provenance to `radar_discoveries`.
 5. Verify record counts, unique IDs, null/completeness distribution and sample
@@ -92,6 +94,22 @@ compact versioned JSONL snapshots even after Postgres becomes canonical.
   limits at the edge for API routes; the static snapshot itself needs none.
 - The public application gets a read-only database role. The ingestion role and
   GitHub token never enter browser JavaScript.
+
+## Curated submissions and private learning goals
+
+`POST /api/suggestions` accepts only a normalized public GitHub repository name
+and a 1–2,000 character private learning goal. It writes to
+`radar_project_suggestions` with `status: pending`; there is intentionally no
+public list endpoint for this table. A curator must verify the repository with
+the GitHub metadata crawler before adding it to the published snapshot. Do not
+collect a name, email, IP address, or analytics identifier for the first launch
+unless there is a separate published privacy policy and retention decision.
+
+The website currently falls back to a complete GitHub social preview. Homepage
+screenshots should be generated and cached in a scheduled server-side job only
+after selecting a screenshot provider, budget, retention period, and URL-sharing
+disclosure. Do not call an anonymous screenshot provider from every visitor's
+browser request.
 
 ## Robots, GitHub rate limits and attribution
 

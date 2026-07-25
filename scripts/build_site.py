@@ -5,12 +5,41 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# The crawler is deliberately high-recall. The public Radar needs a conservative,
+# metadata-only inclusion gate so a transient search match does not become a
+# featured education project. This is not source-code or capability analysis.
+EDUCATION_SIGNAL = re.compile(
+    r"educat|edtech|teach|teacher|classroom|school|student|curriculum|"
+    r"courseware|learning management|\blms\b|k[- ]?12|tutor|assessment|quiz|"
+    r"exam|homework|textbook|flashcard|spaced repetition|pedagog|literacy|"
+    r"教育|教学|学习|课程|课堂|教师|学生|教材|备课|题库|考试|学校|知识图谱",
+    re.IGNORECASE,
+)
+
+
+def is_public_radar_record(record: dict) -> bool:
+    """Keep a public education-facing view of the wider discovery registry."""
+    if any(item.get("lead_id") for item in record.get("provenance", [])):
+        return True
+    searchable = " ".join(
+        filter(
+            None,
+            [
+                record.get("full_name"),
+                record.get("description"),
+                " ".join(record.get("topics") or []),
+            ],
+        )
+    )
+    return bool(EDUCATION_SIGNAL.search(searchable))
 
 
 def public_record(record: dict) -> dict:
@@ -27,6 +56,9 @@ def public_record(record: dict) -> dict:
         "full_name": record.get("full_name"),
         "html_url": record.get("html_url"),
         "homepage": record.get("homepage"),
+        # Filled only by a future scheduled screenshot cache, never by a public
+        # page request. Omit it until a provider and retention policy are set.
+        "homepage_screenshot_url": record.get("homepage_screenshot_url"),
         "description": record.get("description"),
         "topics": record.get("topics", []),
         "languages": record.get("languages", {}),
@@ -76,7 +108,8 @@ def main() -> int:
             (record.get("full_name") or record.get("name") or "").casefold(),
         )
     )
-    public_records = [public_record(record) for record in records]
+    visible_records = [record for record in records if is_public_radar_record(record)]
+    public_records = [public_record(record) for record in visible_records]
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
@@ -84,10 +117,11 @@ def main() -> int:
         .replace(microsecond=0)
         .isoformat()
         .replace("+00:00", "Z"),
-        "count": len(records),
+        "count": len(visible_records),
+        "registry_count": len(records),
         "counts": {
-            "verification_status": dict(Counter(record["verification_status"] for record in records)),
-            "entity_kind": dict(Counter(record["entity_kind"] for record in records)),
+            "verification_status": dict(Counter(record["verification_status"] for record in visible_records)),
+            "entity_kind": dict(Counter(record["entity_kind"] for record in visible_records)),
         },
         "records": public_records,
     }
@@ -96,7 +130,7 @@ def main() -> int:
         json.dump(payload, handle, ensure_ascii=False, separators=(",", ":"))
         handle.write("\n")
     temporary.replace(output_path)
-    print(f"wrote {len(records)} records to {output_path}")
+    print(f"wrote {len(visible_records)} public records from {len(records)} registry records to {output_path}")
     return 0
 
 

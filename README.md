@@ -100,16 +100,18 @@ npm run dev
 npm run build
 ```
 
-For Vercel, import the repository and set the project's **Root Directory** to
-`github-radar/web`. The website is intentionally not deployed or linked to a
+For Vercel, import this repository and set the project's **Root Directory** to
+`web`. The website is intentionally not deployed or linked to a
 Vercel account by this repository. To enable the outbound support button, set
 `NEXT_PUBLIC_BUY_ME_A_COFFEE_URL` to the creator-page URL in the Vercel project
 environment. Do not set `DATABASE_URL`, `GITHUB_TOKEN`, or `CRON_SECRET` until
 the scheduled-refresh architecture is explicitly enabled.
 
 The visible thumbnail uses GitHub's public social-preview endpoint with a local
-branded fallback. A future scheduled refresh should generate/cache thumbnails
-off the public request path rather than fetching repository source.
+branded fallback. When a scheduled screenshot cache is configured,
+`homepage_screenshot_url` takes priority for repositories with a website. Do
+not call a third-party screenshot API from each public page view: it creates
+visitor-facing rate-limit failures and leaks every homepage URL to that vendor.
 
 For a larger run, set a read-only GitHub token in the shell, do not put it in
 `.env.example`, and partition the matrix by date/star ranges so that no query
@@ -139,4 +141,7 @@ herd. Crawl on a schedule, then publish a snapshot or query the database.
 
 `build_site.py` uses an explicit public-field allowlist. It removes API/clone
 URLs, candidate-resolution internals, full provenance references and local
-filesystem paths from `site/data/registry.json`.
+filesystem paths from `site/data/registry.json`. It also applies a documented,
+metadata-only education-signal gate to the public view. The canonical registry
+remains high-recall; GitHub API verification is not an assertion that every
+record should be featured on the education-facing website.

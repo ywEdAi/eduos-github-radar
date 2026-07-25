@@ -1,0 +1,14 @@
+{
+  "api_requests": 150,
+  "api_version": "2026-03-10",
+  "authenticated": true,
+  "command": "refresh",
+  "errors": [],
+  "finished_at": "2026-07-25T23:30:49Z",
+  "not_modified": 0,
+  "not_modified_responses": 0,
+  "registry_records": 893,
+  "selected": 50,
+  "started_at": "2026-07-25T23:29:40Z",
+  "updated": 50
+}

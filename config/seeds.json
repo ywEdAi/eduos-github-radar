@@ -6,7 +6,7 @@
     "kind_hint": "repo",
     "gold_seed": true,
     "source": "local-gold-seed",
-    "source_ref": "/Users/yismacmini4/Documents/public_gitrepo/penecho",
+      "source_ref": "local-gold-seed:penecho",
     "notes": "Exact origin URL read from the local checkout; do not clone."
   },
   {
