@@ -1,0 +1,14 @@
+{
+  "api_requests": 3,
+  "api_version": "2026-03-10",
+  "authenticated": false,
+  "command": "seed",
+  "errors": [],
+  "finished_at": "2026-07-23T03:53:48Z",
+  "not_modified_responses": 0,
+  "registry_records": 23,
+  "selected": 1,
+  "started_at": "2026-07-23T03:53:47Z",
+  "unresolved": 0,
+  "verified": 1
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "id": "education-native-en",
+    "family": "education-native",
+    "query": "education OR edtech in:name,description,readme stars:>=20 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "education-native-zh",
+    "family": "education-native",
+    "query": "教育 OR 教学 OR 学习 in:name,description,readme stars:>=10 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "k12-schools",
+    "family": "education-native",
+    "query": "K12 OR classroom OR school in:name,description,readme stars:>=10 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "lms-courseware",
+    "family": "education-native",
+    "query": "LMS OR courseware OR \"learning platform\" in:name,description,readme stars:>=20 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "teaching-workflow-en",
+    "family": "teaching-workflow",
+    "query": "teacher OR teaching OR lesson in:name,description,readme stars:>=10 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "teaching-workflow-zh",
+    "family": "teaching-workflow",
+    "query": "教师 OR 备课 OR 教案 OR 课堂 in:name,description,readme stars:>=5 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "assessment-question-bank",
+    "family": "teaching-workflow",
+    "query": "\"question bank\" OR assessment OR quiz in:name,description,readme stars:>=10 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "grading-feedback",
+    "family": "teaching-workflow",
+    "query": "grading OR rubric OR \"student feedback\" in:name,description,readme stars:>=5 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "learning-adjacent-knowledge",
+    "family": "learning-adjacent",
+    "query": "\"knowledge graph\" OR textbook OR curriculum in:name,description,readme stars:>=20 archived:false",
+    "kind_hint": "dataset",
+    "enabled": true
+  },
+  {
+    "id": "learning-adjacent-zh",
+    "family": "learning-adjacent",
+    "query": "知识图谱 OR 教材 OR 课程 in:name,description,readme stars:>=5 archived:false",
+    "kind_hint": "dataset",
+    "enabled": true
+  },
+  {
+    "id": "learning-science",
+    "family": "learning-adjacent",
+    "query": "\"spaced repetition\" OR flashcard OR tutoring in:name,description,readme stars:>=20 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "student-tools",
+    "family": "learning-adjacent",
+    "query": "\"study tool\" OR note-taking OR homework in:name,description,readme stars:>=20 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "capability-agent",
+    "family": "capability-primitives",
+    "query": "agent OR copilot in:name,description,readme education stars:>=10 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "capability-rag",
+    "family": "capability-primitives",
+    "query": "RAG OR retrieval in:name,description,readme learning stars:>=20 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "capability-content-authoring",
+    "family": "capability-primitives",
+    "query": "\"content authoring\" OR \"visual editor\" in:name,description,readme stars:>=20 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "capability-speech-ocr",
+    "family": "capability-primitives",
+    "query": "speech OR OCR in:name,description,readme education stars:>=10 archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "topic-education",
+    "family": "topic-expansion",
+    "query": "topic:education archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "topic-edtech",
+    "family": "topic-expansion",
+    "query": "topic:edtech archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "topic-learning-management-system",
+    "family": "topic-expansion",
+    "query": "topic:learning-management-system archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "topic-educational-technology",
+    "family": "topic-expansion",
+    "query": "topic:educational-technology archived:false",
+    "kind_hint": "repo",
+    "enabled": true
+  },
+  {
+    "id": "awesome-education",
+    "family": "awesome-list-leads",
+    "query": "awesome education in:name,description,readme stars:>=20 archived:false",
+    "kind_hint": "awesome_index",
+    "enabled": true
+  },
+  {
+    "id": "awesome-k12",
+    "family": "awesome-list-leads",
+    "query": "awesome K12 in:name,description,readme archived:false",
+    "kind_hint": "awesome_index",
+    "enabled": true
+  },
+  {
+    "id": "dataset-education",
+    "family": "dataset-benchmark",
+    "query": "dataset education in:name,description,readme stars:>=10 archived:false",
+    "kind_hint": "dataset",
+    "enabled": true
+  },
+  {
+    "id": "benchmark-education",
+    "family": "dataset-benchmark",
+    "query": "benchmark education in:name,description,readme stars:>=5 archived:false",
+    "kind_hint": "benchmark",
+    "enabled": true
+  }
+]

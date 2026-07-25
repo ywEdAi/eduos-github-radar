@@ -1,0 +1,16 @@
+{
+  "name": "eduos-github-radar-web",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "sync:data": "node scripts/sync-snapshot.mjs"
+  },
+  "dependencies": {
+    "next": "16.2.11",
+    "react": "latest",
+    "react-dom": "latest"
+  }
+}

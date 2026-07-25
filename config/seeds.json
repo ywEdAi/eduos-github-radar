@@ -1,0 +1,188 @@
+[
+  {
+    "lead_id": "penecho",
+    "label": "PenEcho",
+    "full_name": "penecho/penecho",
+    "kind_hint": "repo",
+    "gold_seed": true,
+    "source": "local-gold-seed",
+    "source_ref": "/Users/yismacmini4/Documents/public_gitrepo/penecho",
+    "notes": "Exact origin URL read from the local checkout; do not clone."
+  },
+  {
+    "lead_id": "teachany",
+    "label": "TeachAny",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "openmaic",
+    "label": "OpenMAIC",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "h5-dooring",
+    "label": "H5-Dooring",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "educhat",
+    "label": "EduChat",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "edukg",
+    "label": "EDUKG",
+    "kind_hint": "dataset",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "mdk12-bench",
+    "label": "MDK12-Bench",
+    "kind_hint": "benchmark",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "minilab",
+    "label": "minilab",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Name is ambiguous; API-selected match remains probable, not curator-confirmed."
+  },
+  {
+    "lead_id": "math-teaching-primary",
+    "label": "math-teaching-for-primary-grades",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "studio-classroom",
+    "label": "StudioClassroom",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "awesome-k12-cs",
+    "label": "awesome-k12-cs",
+    "kind_hint": "awesome_index",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "awesome-k12",
+    "label": "awesome-k12",
+    "kind_hint": "awesome_index",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "china-textbook",
+    "label": "ChinaTextbook",
+    "kind_hint": "dataset",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "smart-edu-downloader",
+    "label": "SmartEduDownloader",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "opensis-classic",
+    "label": "openSIS-Classic",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "openedu",
+    "label": "OpenEDU",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Name is ambiguous; API-selected match remains probable, not curator-confirmed."
+  },
+  {
+    "lead_id": "xzs",
+    "label": "xzs",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Name is ambiguous; API-selected match remains probable, not curator-confirmed."
+  },
+  {
+    "lead_id": "xex",
+    "label": "xex",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Name is ambiguous; API-selected match remains probable, not curator-confirmed."
+  },
+  {
+    "lead_id": "k12-teacher-skills",
+    "label": "k12-teacher-skills",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "teacher-gpt",
+    "label": "TeacherGPT",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "smart-kbs",
+    "label": "SmartKBS",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "learnhouse",
+    "label": "learnhouse",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Unverified until GitHub API resolution."
+  },
+  {
+    "lead_id": "question-bank",
+    "label": "question-bank",
+    "kind_hint": "repo",
+    "gold_seed": false,
+    "source": "user-image-lead",
+    "notes": "Name is ambiguous; API-selected match remains probable, not curator-confirmed."
+  }
+]

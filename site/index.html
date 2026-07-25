@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="GitHub 教育与未来能力开源项目 metadata radar">
+    <title>GitHub 教育 / 未来能力 Radar</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="hero">
+      <p class="eyebrow">OPEN METADATA REGISTRY</p>
+      <h1>GitHub 教育 / 未来能力 Radar</h1>
+      <p class="lede">
+        发现教育原生、教学工作流、学习邻近与能力原语项目。这里只展示可核验的
+        GitHub metadata，不做源码深度判断。
+      </p>
+      <div class="stats" aria-live="polite">
+        <div><strong id="total-count">—</strong><span>全部记录</span></div>
+        <div><strong id="verified-count">—</strong><span>API 已核验</span></div>
+        <div><strong id="updated-at">—</strong><span>数据快照</span></div>
+      </div>
+    </header>
+
+    <main>
+      <section class="controls" aria-label="筛选">
+        <label>
+          <span>搜索</span>
+          <input id="search" type="search" placeholder="名称、简介、topic、语言…" autocomplete="off">
+        </label>
+        <label>
+          <span>类型</span>
+          <select id="kind">
+            <option value="">全部类型</option>
+            <option value="repo">Repository</option>
+            <option value="dataset">Dataset</option>
+            <option value="benchmark">Benchmark</option>
+            <option value="awesome_index">Awesome index</option>
+            <option value="unknown">Unknown</option>
+          </select>
+        </label>
+        <label>
+          <span>核验状态</span>
+          <select id="status">
+            <option value="">全部状态</option>
+            <option value="verified">Verified</option>
+            <option value="unverified">Unverified</option>
+            <option value="error">Error</option>
+          </select>
+        </label>
+        <label>
+          <span>主要语言</span>
+          <select id="language">
+            <option value="">全部语言</option>
+          </select>
+        </label>
+      </section>
+
+      <div class="result-line">
+        <p><strong id="result-count">0</strong> 个匹配结果</p>
+        <p class="legend">probable = GitHub 仓库存在已核验，但仍需确认是否为原始 lead</p>
+      </div>
+      <section id="cards" class="cards" aria-label="仓库列表"></section>
+      <p id="empty" class="empty" hidden>没有匹配项。请放宽筛选条件。</p>
+    </main>
+
+    <footer>
+      <p>Metadata only · Stable GitHub repository ID deduplication · No bulk source clones</p>
+    </footer>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

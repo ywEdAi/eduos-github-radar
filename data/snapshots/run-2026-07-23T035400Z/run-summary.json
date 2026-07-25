@@ -1,0 +1,14 @@
+{
+  "api_requests": 7,
+  "api_version": "2026-03-10",
+  "authenticated": false,
+  "command": "discover",
+  "errors": [],
+  "finished_at": "2026-07-23T03:54:00Z",
+  "hydrated": 2,
+  "not_modified_responses": 0,
+  "queries": 1,
+  "registry_records": 48,
+  "started_at": "2026-07-23T03:53:57Z",
+  "unique_repositories_seen": 25
+}

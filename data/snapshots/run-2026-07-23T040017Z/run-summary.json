@@ -1,0 +1,13 @@
+{
+  "api_requests": 30,
+  "api_version": "2026-03-10",
+  "authenticated": false,
+  "command": "hydrate",
+  "errors": [],
+  "finished_at": "2026-07-23T04:00:17Z",
+  "hydrated": 10,
+  "not_modified_responses": 0,
+  "registry_records": 48,
+  "selected": 10,
+  "started_at": "2026-07-23T04:00:06Z"
+}
