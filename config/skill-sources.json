@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1",
+  "sources": [
+    {
+      "source_id": "openai-skills",
+      "owner": "openai",
+      "repo": "skills",
+      "skill_root": "skills",
+      "source_type": "first_party_collection",
+      "ecosystems": ["codex", "chatgpt"],
+      "compatibility_confidence": "source_declared"
+    },
+    {
+      "source_id": "anthropic-skills",
+      "owner": "anthropics",
+      "repo": "skills",
+      "skill_root": "skills",
+      "source_type": "first_party_collection",
+      "ecosystems": ["claude", "agent-skills"],
+      "compatibility_confidence": "source_declared"
+    }
+  ]
+}

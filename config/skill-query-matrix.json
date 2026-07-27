@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "queries": [
+    {
+      "query_id": "claude-layout",
+      "query": "filename:SKILL.md path:.claude/skills",
+      "ecosystems": ["claude", "agent-skills"]
+    },
+    {
+      "query_id": "codex-layout",
+      "query": "filename:SKILL.md path:.codex/skills",
+      "ecosystems": ["codex", "agent-skills"]
+    },
+    {
+      "query_id": "learning-english",
+      "query": "filename:SKILL.md learning",
+      "ecosystems": ["agent-skills"]
+    },
+    {
+      "query_id": "teaching-english",
+      "query": "filename:SKILL.md teaching",
+      "ecosystems": ["agent-skills"]
+    },
+    {
+      "query_id": "education-chinese",
+      "query": "filename:SKILL.md 教育",
+      "ecosystems": ["agent-skills"]
+    },
+    {
+      "query_id": "project-learning",
+      "query": "filename:SKILL.md research OR study OR curriculum",
+      "ecosystems": ["agent-skills"]
+    }
+  ]
+}

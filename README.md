@@ -23,6 +23,15 @@ Its stable deduplication key is GitHub's numeric repository ID.
 - `config/awesome-leads.example.txt`: exact lead-import format for approved
   awesome indices.
 - `scripts/crawl.py`: seed verification, discovery, hydration, incremental refresh.
+- `config/skill-sources.json`: curator-approved first-party Skills collections.
+- `config/skill-query-matrix.json`: bounded GitHub `SKILL.md` discovery queries
+  for public community Skills.
+- `scripts/crawl_skills.py`: metadata-only Skills manifest collector; it reads
+  public GitHub repository metadata, file trees, and `SKILL.md` frontmatter.
+- `data/skills.jsonl`: high-recall local Skills registry. It never stores a
+  skill body, scripts, assets, or references.
+- `scripts/build_skills_site.py`: education-oriented public Skills export.
+- `docs/skills-roadmap.md`: product boundary, collection route, and EduOS handoff.
 - `schema/registry.schema.json`: registry contract.
 - `migrations/001_init.sql`: future managed Postgres schema.
 - `data/registry.jsonl`: compact canonical local registry.
@@ -84,6 +93,14 @@ python3 scripts/validate.py \
   --report reports/data-quality-$(date -u +%F).md
 python3 scripts/build_site.py
 python3 -m http.server 8000 --directory site
+
+# Skills: official collections plus a bounded community GitHub search. This
+# fetches only public repository metadata, trees, and SKILL.md frontmatter.
+GH_TOKEN="$(gh auth token)" python3 scripts/crawl_skills.py --discover \
+  --query-limit 40 --per-page 20
+python3 scripts/validate_skills.py \
+  --report reports/skills-data-quality-$(date -u +%F).md
+python3 scripts/build_skills_site.py
 ```
 
 ## React website (Vercel-ready)
@@ -145,3 +162,13 @@ filesystem paths from `site/data/registry.json`. It also applies a documented,
 metadata-only education-signal gate to the public view. The canonical registry
 remains high-recall; GitHub API verification is not an assertion that every
 record should be featured on the education-facing website.
+
+## Education Skills Library
+
+The website's **Skills** switch is an education-oriented library, not a general
+Skill Marketplace. Each visible card links back to the public GitHub repository
+that contains the Skill and to its public `SKILL.md` manifest. The local
+registry is deliberately broader for recall, while the public shelf applies a
+transparent metadata gate for education, learning, research, teacher/student
+workflow, or learning-to-build signals. This gate is not a pedagogical-quality
+claim; future curator review and EduOS evaluation remain separate work.

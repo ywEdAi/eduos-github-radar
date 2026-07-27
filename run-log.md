@@ -85,3 +85,25 @@
   route. Repository suggestions are pending until GitHub metadata verification;
   learning goals are private and have no public read path. No managed database
   or Vercel deployment was provisioned.
+
+## 2026-07-27
+
+- Added a separate metadata-only Skills artifact family inside the independent
+  Radar project. It is not connected to the substrate, GitHub repo analysis,
+  or any skill runtime.
+- Added curated first-party source configuration for `openai/skills` and
+  `anthropics/skills`, plus a bounded GitHub Code Search query matrix for
+  public community `SKILL.md` manifests. The collector reads repository
+  metadata, a Git tree, and frontmatter `name`/`description` only; it neither
+  clones, saves instruction bodies, installs, nor executes Skills.
+- Initial collection produced 105 high-recall metadata records. The generated
+  public Skills shelf shows 37 records with transparent education/learning/
+  research/workflow metadata signals; the gate is not a pedagogical-quality or
+  runtime-compatibility assertion.
+- Added the GitHub / Skills header switch, bilingual Skills UI, source and
+  ecosystem/resource filters, and explicit links from every card to its source
+  GitHub repository and public `SKILL.md` manifest.
+- Browser check confirmed the Skills switch renders 37 cards, source repository
+  links use GitHub URLs, and no client console warnings/errors occurred. No
+  package installation, deployment, paid service, database, model backend, or
+  external Skill execution was authorized or performed.

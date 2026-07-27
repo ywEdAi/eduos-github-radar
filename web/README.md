@@ -1,16 +1,25 @@
 # EduOS GitHub Radar web
 
 The React/Next.js presentation layer for the independent `github-radar` registry.
-It currently ships a safe, allowlisted snapshot under `data/registry.json`.
+It currently ships safe, allowlisted snapshots under `data/registry.json` and
+`data/skills.json`.
 
 ```bash
 cd github-radar
 python3 scripts/build_site.py
+python3 scripts/build_skills_site.py
 cd web
 npm install
 npm run sync:data
 npm run dev
 ```
+
+## Education Skills Library
+
+The header switches between GitHub projects and an education-oriented Skills
+library. Every Skill card links to its public GitHub source repository and
+public `SKILL.md` manifest. The UI does not install, execute, or serve a skill
+package; it displays only generated manifest metadata.
 
 ## Vercel deployment
 
