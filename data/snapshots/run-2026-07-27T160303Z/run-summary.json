@@ -1,0 +1,28 @@
+{
+  "api_requests": 144,
+  "api_version": "2026-03-10",
+  "authenticated": true,
+  "command": "discover",
+  "errors": [
+    {
+      "error": "[Errno 2] No such file or directory: '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json.tmp' -> '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json'",
+      "page": 1,
+      "query_id": "capability-agent"
+    },
+    {
+      "error": "[Errno 2] No such file or directory: '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json.tmp' -> '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json'",
+      "full_name": "ionic-team/ionic-framework"
+    },
+    {
+      "error": "[Errno 2] No such file or directory: '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json.tmp' -> '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json'",
+      "full_name": "siyuan-note/siyuan"
+    }
+  ],
+  "finished_at": "2026-07-27T16:03:03Z",
+  "hydrated": 38,
+  "not_modified_responses": 0,
+  "queries": 24,
+  "registry_records": 2174,
+  "started_at": "2026-07-27T16:00:34Z",
+  "unique_repositories_seen": 1695
+}
