@@ -1,0 +1,35 @@
+{
+  "api_requests": 106,
+  "api_version": "2026-03-10",
+  "authenticated": true,
+  "command": "discover",
+  "errors": [
+    {
+      "error": "[Errno 2] No such file or directory: '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json.tmp' -> '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json'",
+      "full_name": "rockerBOO/awesome-neovim"
+    },
+    {
+      "error": "[Errno 2] No such file or directory: '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json.tmp' -> '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json'",
+      "full_name": "SimplifyJobs/New-Grad-Positions"
+    },
+    {
+      "error": "[Errno 2] No such file or directory: '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json.tmp' -> '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json'",
+      "full_name": "playcanvas/engine"
+    },
+    {
+      "error": "[Errno 2] No such file or directory: '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json.tmp' -> '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json'",
+      "full_name": "a2ui-project/a2ui"
+    },
+    {
+      "error": "[Errno 2] No such file or directory: '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json.tmp' -> '/Users/yismacmini4/Documents/edu-ai-builders/eduos-substrate/github-radar/state/http-cache.json'",
+      "full_name": "MicrosoftDocs/azure-docs"
+    }
+  ],
+  "finished_at": "2026-07-31T18:07:10Z",
+  "hydrated": 25,
+  "not_modified_responses": 0,
+  "queries": 24,
+  "registry_records": 2576,
+  "started_at": "2026-07-31T18:05:36Z",
+  "unique_repositories_seen": 855
+}
