@@ -64,11 +64,11 @@ const GUIDE = {
     language: "Primary language",
     index: "Index",
     inView: "projects in view",
-    generatedHint: "Generated plates are drawn from verified project metadata.",
+    generatedHint: "Project portraits are metadata-based guides, not website screenshots.",
     noResults: "No projects fit that combination.",
     clear: "Clear filters",
     drop: "Drop the narrowest filter",
-    sourceGenerated: "Generated",
+    sourceGenerated: "Project portrait",
     sourceDemo: "Demo site",
     maintained: "Maint.",
     issues: "Issues",
@@ -140,11 +140,11 @@ const GUIDE = {
     language: "主要语言",
     index: "索引",
     inView: "个项目正在显示",
-    generatedHint: "生成 plates 来自已核验的项目元数据。",
+    generatedHint: "项目画像来自已核验元数据，不是网站截图。",
     noResults: "没有项目符合这组条件。",
     clear: "清除筛选",
     drop: "移除最窄的条件",
-    sourceGenerated: "生成图板",
+    sourceGenerated: "项目画像",
     sourceDemo: "官网截图",
     maintained: "活跃",
     issues: "议题",
@@ -205,19 +205,34 @@ function signalTitle(record, name, label) {
 }
 
 function GeneratedPlate({ record, className = "" }) {
-  const [, tax] = primarySubject(record); const hue = HUES[tax]; const seed = hash(`${ownerName(record)}/${record.name}`); const kind = shape(record); const content = [];
-  if (kind === "dataset") {
-    for (let row = 0; row < 5; row += 1) for (let column = 0; column < 8; column += 1) content.push(<rect key={`${row}-${column}`} x={34 + column * 32} y={40 + row * 24} width="24" height="17" rx="3" fill={hue} opacity={((seed >> ((row * 8 + column) % 29)) & 3) > 0 ? 0.22 + ((seed >> (column + row)) & 7) / 15 : 0.07} />);
-  } else if (kind === "benchmark") {
-    for (let index = 0; index < 7; index += 1) { const width = 40 + ((seed >> (index * 2)) & 63) * 3.1; content.push(<g key={index}><rect x="42" y={30 + index * 22} width={width} height="11" rx="5.5" fill={hue} opacity={0.25 + index * 0.08} /><rect x="42" y={30 + index * 22} width="212" height="11" rx="5.5" fill="none" stroke={hue} strokeOpacity=".18" /></g>); }
-  } else if (kind === "list") {
-    for (let index = 0; index < 9; index += 1) { const width = 60 + ((seed >> index) & 31) * 6; content.push(<g key={index}><rect x="46" y={26 + index * 17} width="12" height="6" rx="3" fill={hue} /><rect x="66" y={26 + index * 17} width={width} height="6" rx="3" fill={hue} opacity=".22" /></g>); }
-  } else {
-    const points = Array.from({ length: 6 }, (_, index) => [44 + index * 46, round(100 + Math.sin(index * 1.3 + (seed % 9)) * 44)]);
-    content.push(<path key="line" d={`M${points.map(([x, y]) => `${x} ${y}`).join(" L ")}`} fill="none" stroke={hue} strokeWidth="2.5" strokeOpacity=".45" strokeLinecap="round" />);
-    points.forEach(([x, y], index) => content.push(<circle key={index} cx={x} cy={y} r={9 + ((seed >> index) & 3) * 2} fill={index === points.length - 1 ? hue : "#fff"} stroke={hue} strokeWidth="2.5" />));
-  }
-  return <svg className={className} viewBox="0 0 320 200" role="img" aria-label={`Generated project plate for ${record.full_name || record.name}`}>{content}</svg>;
+  const [, tax, subject] = primarySubject(record); const hue = HUES[tax]; const seed = hash(`${ownerName(record)}/${record.name}`); const kind = shape(record); const label = kind === "dataset" ? "DATASET" : kind === "benchmark" ? "BENCHMARK" : kind === "list" ? "CURATED LIST" : "LEARNING TOOL";
+  const warm = ["#FFE4BD", "#FBE0F0", "#DFF5E8", "#DDE5FF"][seed % 4];
+  const bars = Array.from({ length: 4 }, (_, index) => 44 + ((seed >> (index * 3)) & 31) * 4);
+  return <svg className={className} viewBox="0 0 320 200" role="img" aria-label={`Metadata portrait for ${record.full_name || record.name}`}>
+    <rect width="320" height="200" fill={warm} />
+    <rect x="18" y="17" width="284" height="166" rx="14" fill="#FFFEFA" stroke={hue} strokeOpacity=".24" />
+    <rect x="18" y="17" width="284" height="27" rx="14" fill={hue} /><rect x="18" y="31" width="284" height="13" fill={hue} />
+    <circle cx="35" cy="30" r="3" fill="#fff" opacity=".85" /><circle cx="46" cy="30" r="3" fill="#fff" opacity=".55" /><circle cx="57" cy="30" r="3" fill="#fff" opacity=".3" />
+    <text x="75" y="33" fill="#fff" fontFamily="ui-monospace, monospace" fontSize="8" letterSpacing="1.4">{label}</text>
+    {kind === "dataset" ? <>
+      <text x="36" y="66" fill="#171827" fontFamily="Georgia, serif" fontSize="18">Open data, ready to inspect</text>
+      <rect x="36" y="78" width="248" height="15" rx="4" fill={hue} opacity=".13" />
+      {[0, 1, 2, 3].map((row) => <g key={row}><rect x="36" y={101 + row * 15} width="248" height="10" rx="3" fill="#F4F1EB" />{[0, 1, 2, 3].map((column) => <rect key={column} x={42 + column * 57} y={104 + row * 15} width={18 + ((seed >> (row + column)) & 3) * 8} height="4" rx="2" fill={hue} opacity={column === 0 ? ".72" : ".28"} />)}</g>)}
+    </> : kind === "benchmark" ? <>
+      <text x="36" y="66" fill="#171827" fontFamily="Georgia, serif" fontSize="18">Evidence at a glance</text>
+      <text x="36" y="82" fill="#71717D" fontFamily="ui-monospace, monospace" fontSize="7" letterSpacing=".8">TASK · METHOD · RESULT</text>
+      {bars.map((width, index) => <g key={index}><rect x="36" y={96 + index * 18} width="228" height="10" rx="5" fill="#F1EEE8" /><rect x="36" y={96 + index * 18} width={width} height="10" rx="5" fill={hue} /><rect x="270" y={97 + index * 18} width="12" height="8" rx="2" fill={index % 2 ? "#F6C358" : "#F3A7C5"} /></g>)}
+    </> : kind === "list" ? <>
+      <text x="36" y="66" fill="#171827" fontFamily="Georgia, serif" fontSize="18">A reading shelf</text>
+      {[0, 1, 2, 3, 4].map((index) => <g key={index}><rect x={36 + index * 45} y={84 + ((seed >> index) & 1) * 7} width="32" height={60 - ((seed >> (index + 4)) & 3) * 5} rx="4" fill={index % 2 ? hue : "#F6C358"} opacity={index % 2 ? ".82" : ".88"} /><rect x={41 + index * 45} y={94 + ((seed >> index) & 1) * 7} width="22" height="3" rx="1.5" fill="#fff" opacity=".7" /></g>)}
+    </> : <>
+      <text x="36" y="66" fill="#171827" fontFamily="Georgia, serif" fontSize="18">Build a lesson path</text>
+      <text x="36" y="82" fill="#71717D" fontFamily="ui-monospace, monospace" fontSize="7" letterSpacing=".8">{subject.toUpperCase()} · EXPLORE · PRACTISE</text>
+      <rect x="36" y="96" width="104" height="55" rx="8" fill={hue} opacity=".12" /><rect x="151" y="96" width="133" height="22" rx="7" fill="#F5F1EB" /><rect x="151" y="128" width="95" height="23" rx="7" fill="#F5F1EB" />
+      <path d="M54 132 C72 106 89 151 116 111" fill="none" stroke={hue} strokeWidth="4" strokeLinecap="round" /><circle cx="54" cy="132" r="7" fill="#fff" stroke={hue} strokeWidth="3" /><circle cx="116" cy="111" r="7" fill={hue} />
+      <rect x="164" y="103" width="78" height="5" rx="2.5" fill={hue} opacity=".55" /><rect x="164" y="136" width="54" height="5" rx="2.5" fill={hue} opacity=".55" />
+    </>}
+  </svg>;
 }
 
 function OwnerMark({ record }) {
@@ -265,23 +280,21 @@ function SuggestionForm({ copy }) {
 }
 
 function Book({ records, copy, locale, onSubject, onBrowse }) {
-  const [current, setCurrent] = useState(0); const [paused, setPaused] = useState(false); const [progress, setProgress] = useState(0); const [direction, setDirection] = useState("next"); const touchStart = useRef(null); const stage = useRef(null); const reduced = useRef(false);
+  const [current, setCurrent] = useState(0); const [direction, setDirection] = useState("next"); const touchStart = useRef(null);
   const subjectCounts = useMemo(() => Object.fromEntries(SUBJECTS.map(([id]) => [id, records.filter((record) => matchedSubjects(record).some(([subjectId]) => subjectId === id)).length])), [records]);
   const demos = records.filter((record) => safeHomepage(record)); const featured = demos.sort((a, b) => (b.metrics?.stars || 0) - (a.metrics?.stars || 0))[0] || records[0];
   const go = (next) => { const target = (next + 5) % 5; if (target === current) return; setDirection(target > current || (current === 4 && target === 0) ? "next" : "prev"); setCurrent(target); };
-  const stop = () => { setPaused(true); setProgress(0); };
-  useEffect(() => { reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches; if (reduced.current || paused) return undefined; let frame; const started = performance.now(); const tick = (now) => { const fraction = Math.min((now - started) / 9000, 1); setProgress(fraction); if (fraction === 1) { setCurrent((item) => (item + 1) % 5); setDirection("next"); setProgress(0); return; } frame = requestAnimationFrame(tick); }; frame = requestAnimationFrame(tick); return () => cancelAnimationFrame(frame); }, [current, paused]);
   const labels = copy.pages;
   const pageContent = [
-    <><p className="page-no">{copy.pageNo} 01 — {labels[0]}</p><h1>{copy.heroTitleStart} <em>{copy.heroTitleAccent}</em> {copy.heroTitleEnd}</h1><p>{copy.heroBody}</p><div className="stat-row"><div><b>{records.length}</b>{copy.projects}</div><div><b>{demos.length}</b>{copy.liveDemos}</div><div><b>{records.filter((record) => record.verification_status === "verified").length}</b>{copy.verified}</div></div><div className="page-cta"><button className="button button-ink" onClick={() => { stop(); go(2); }}>{copy.browseSubject}</button><button className="button button-ghost" onClick={() => { stop(); go(3); }}>{copy.readSignals}</button></div></>,
-    featured ? <><p className="page-no">{copy.pageNo} 02 — {copy.todayPick}</p><div className="feature-pick"><div className="feature-art"><Visual record={featured} copy={copy} /></div><div><span className="plate-owner">{ownerName(featured)} /</span><a className="feature-name" href={featured.html_url} target="_blank" rel="noreferrer">{featured.name}</a><blockquote>{copy.pickNote}</blockquote><div className="page-cta"><a className="button button-ink" href={featured.html_url} target="_blank" rel="noreferrer">{copy.openEntry}</a><button className="button button-ghost" onClick={() => { onBrowse(); }}>{copy.allProjects}</button></div></div></div></> : null,
-    <><p className="page-no">{copy.pageNo} 03 — {labels[2]}</p><h2>{copy.subjectTitle}</h2><div className="subject-swatch-grid">{SUBJECTS.map(([id, tax, en, zh]) => <button className={`subject-swatch t-${tax}`} onClick={() => { stop(); onSubject(id); }} key={id}><i /><span>{locale === "zh" ? zh : en}</span><small>{subjectCounts[id]}</small></button>)}</div></>,
+    <div className="hero-split"><div><p className="page-no">{copy.pageNo} 01 — {labels[0]}</p><h1>{copy.heroTitleStart} <em>{copy.heroTitleAccent}</em> {copy.heroTitleEnd}</h1><p>{copy.heroBody}</p><div className="stat-row"><div><b>{records.length}</b>{copy.projects}</div><div><b>{demos.length}</b>{copy.liveDemos}</div><div><b>{records.filter((record) => record.verification_status === "verified").length}</b>{copy.verified}</div></div><div className="page-cta"><button className="button button-ink" onClick={() => go(2)}>{copy.browseSubject}</button><button className="button button-ghost" onClick={() => go(3)}>{copy.readSignals}</button></div></div>{featured ? <div className={`hero-portrait t-${primarySubject(featured)[1]}`}><Visual record={featured} copy={copy} /><div><span>{copy.todayPick}</span><strong>{featured.name}</strong><small>{ownerName(featured)} · {locale === "zh" ? primarySubject(featured)[3] : primarySubject(featured)[2]}</small></div></div> : null}</div>,
+    featured ? <><p className="page-no">{copy.pageNo} 02 — {copy.todayPick}</p><div className="feature-pick"><div className="feature-art"><Visual record={featured} copy={copy} /></div><div><span className="plate-owner">{ownerName(featured)} /</span><a className="feature-name" href={featured.html_url} target="_blank" rel="noreferrer">{featured.name}</a><blockquote>{copy.pickNote}</blockquote><div className="page-cta"><a className="button button-ink" href={featured.html_url} target="_blank" rel="noreferrer">{copy.openEntry}</a><button className="button button-ghost" onClick={onBrowse}>{copy.allProjects}</button></div></div></div></> : null,
+    <><p className="page-no">{copy.pageNo} 03 — {labels[2]}</p><h2>{copy.subjectTitle}</h2><div className="subject-swatch-grid">{SUBJECTS.map(([id, tax, en, zh]) => <button className={`subject-swatch t-${tax}`} onClick={() => onSubject(id)} key={id}><i /><span>{locale === "zh" ? zh : en}</span><small>{subjectCounts[id]}</small></button>)}</div></>,
     <><p className="page-no">{copy.pageNo} 04 — {labels[3]}</p><h2>{copy.checkTitle}</h2><div className="checks">{copy.checks.map(([signal, title, description]) => <div className="check" key={title}><span>{signal}</span><h3>{title}</h3><p>{description}</p></div>)}</div></>,
     <><p className="page-no">{copy.pageNo} 05 — {labels[4]}</p><h2>{copy.demandTitle}</h2><p>{copy.demandBody}</p><div className="page-cta"><a className="button button-primary" href="#add-signal">{copy.addSignal}</a></div></>,
   ];
-  return <section className="field-guide" ref={stage} onMouseEnter={stop} onFocusCapture={stop} onKeyDown={(event) => { if (event.key === "ArrowRight") { event.preventDefault(); stop(); go(current + 1); } if (event.key === "ArrowLeft") { event.preventDefault(); stop(); go(current - 1); } }} onTouchStart={(event) => { touchStart.current = event.touches[0]?.clientX; }} onTouchEnd={(event) => { const distance = (event.changedTouches[0]?.clientX || 0) - (touchStart.current || 0); if (Math.abs(distance) > 55) { stop(); go(current + (distance < 0 ? 1 : -1)); } touchStart.current = null; }}>
+  return <section className="field-guide" onKeyDown={(event) => { if (event.key === "ArrowRight") { event.preventDefault(); go(current + 1); } if (event.key === "ArrowLeft") { event.preventDefault(); go(current - 1); } }} onTouchStart={(event) => { touchStart.current = event.touches[0]?.clientX; }} onTouchEnd={(event) => { const distance = (event.changedTouches[0]?.clientX || 0) - (touchStart.current || 0); if (Math.abs(distance) > 55) go(current + (distance < 0 ? 1 : -1)); touchStart.current = null; }}>
     <div className="guide-stage">{pageContent.map((content, index) => <div key={index} role="tabpanel" id={`guide-page-${index}`} aria-labelledby={`guide-tab-${index}`} className={`guide-page ${direction}`} hidden={index !== current}>{content}</div>)}</div>
-    <div className="guide-tabs" role="tablist" aria-label="Field guide pages"><span className="contents-label">Contents</span>{labels.map((label, index) => <button id={`guide-tab-${index}`} role="tab" aria-selected={index === current} aria-controls={`guide-page-${index}`} tabIndex={index === current ? 0 : -1} onClick={() => { stop(); go(index); }} onKeyDown={(event) => { if (event.key === "Home") { event.preventDefault(); stop(); go(0); } if (event.key === "End") { event.preventDefault(); stop(); go(4); } }} key={label}><span>{String(index + 1).padStart(2, "0")}</span>{label}</button>)}<div className="guide-controls"><svg viewBox="0 0 26 26" aria-hidden="true"><circle className="ring-bg" cx="13" cy="13" r="11" /><circle className="ring-fg" cx="13" cy="13" r="11" style={{ strokeDashoffset: 69.1 * (1 - progress) }} /></svg><small>{paused || reduced.current ? "paused" : "auto"}</small><button onClick={() => { stop(); go(current - 1); }} aria-label="Previous field guide page">←</button><button onClick={() => { stop(); go(current + 1); }} aria-label="Next field guide page">→</button></div></div>
+    <div className="guide-tabs" role="tablist" aria-label="Field guide pages"><span className="contents-label">Contents</span>{labels.map((label, index) => <button id={`guide-tab-${index}`} role="tab" aria-selected={index === current} aria-controls={`guide-page-${index}`} tabIndex={index === current ? 0 : -1} onClick={() => go(index)} onKeyDown={(event) => { if (event.key === "Home") { event.preventDefault(); go(0); } if (event.key === "End") { event.preventDefault(); go(4); } }} key={label}><span>{String(index + 1).padStart(2, "0")}</span>{label}</button>)}<div className="guide-controls"><small>Explore</small><button onClick={() => go(current - 1)} aria-label="Previous field guide page">←</button><button onClick={() => go(current + 1)} aria-label="Next field guide page">→</button></div></div>
   </section>;
 }
 
