@@ -14,7 +14,6 @@ const SUBJECTS = [
 ];
 
 const HUES = { math: "#1B2AFF", lang: "#F5219A", sci: "#00B3A4", teach: "#FF7A00", learn: "#5A5F73", cs: "#7DBE12" };
-const SHAPES = { repo: "repo", dataset: "dataset", benchmark: "benchmark", awesome_index: "list" };
 const DAY = 86400000;
 
 const GUIDE = {
@@ -64,11 +63,10 @@ const GUIDE = {
     language: "Primary language",
     index: "Index",
     inView: "projects in view",
-    generatedHint: "Project portraits are metadata-based guides, not website screenshots.",
+    generatedHint: "Previews come from GitHub or a recorded project website; they are not product reviews.",
     noResults: "No projects fit that combination.",
     clear: "Clear filters",
     drop: "Drop the narrowest filter",
-    sourceGenerated: "Project portrait",
     sourceDemo: "Demo site",
     maintained: "Maint.",
     issues: "Issues",
@@ -95,39 +93,39 @@ const GUIDE = {
     source: "Source",
   },
   zh: {
-    snapshot: "开源教育情报",
-    thesis: "由真正理解教学的人阅读过的 GitHub 教育项目。",
-    thesisMore: "点击之前，先看清它的形态与信号。",
-    pages: ["这是哪里", "今日精选", "按学科浏览", "如何读一个 repo", "大家在寻找什么"],
+    snapshot: "开源教育项目雷达",
+    thesis: "从教学视角解读的 GitHub 教育项目。",
+    thesisMore: "点击之前，先判断它是否适合你的课堂或工具栈。",
+    pages: ["这里是什么", "今日精选", "按学科浏览", "如何判断一个仓库", "大家在找什么"],
     pageNo: "第",
-    heroTitleStart: "克隆之前，先看懂一个",
+    heroTitleStart: "克隆之前，先弄清这个",
     heroTitleAccent: "学习工具",
-    heroTitleEnd: "真正能做什么。",
-    heroBody: "这不是链接清单，而是一份 field guide：在你花一个晚上研究它之前，先看清项目、活跃度、文档和许可证。",
+    heroTitleEnd: "到底能做什么。",
+    heroBody: "这不是链接清单，而是一份项目导览。在花时间深入之前，先看清它的用途、活跃度、文档和许可证。",
     projects: "个项目已收录",
     liveDemos: "个有公开网站",
-    verified: "个 GitHub 元数据已核验",
+    verified: "条 GitHub 元数据已核验",
     browseSubject: "按学科浏览",
     readSignals: "如何读一个 repo",
     todayPick: "今日精选",
     pickNote: "一个有公开网站的项目，仍要先确认它的元数据是否可信。先试 demo，再看下方四个信号。",
     openEntry: "打开项目 ↗",
     allProjects: "浏览全部项目",
-    subjectTitle: "从你教的内容开始。",
+    subjectTitle: "从你正在教的内容开始。",
     subjectCta: "显示项目",
-    checkTitle: "投入一个晚上之前，先看四个信号。",
+    checkTitle: "花时间深入之前，先看四个信号。",
     checks: [
-      ["信号 01", "最近活跃度", "近期有 push 的仓库，更可能在出问题时仍有维护者响应。"],
-      ["信号 02", "Issue 负载", "Open issue 是当前支持负载的轻量代理，并不是项目质量的最终判断。"],
-      ["信号 03", "文档", "描述与可读的公开元数据能让你在 clone 前更快判断项目。"],
-      ["信号 04", "许可证", "清晰的许可证说明你能如何改造、分享或重新发布材料。"],
+      ["信号 01", "近期活跃度", "近期仍有提交的仓库，遇到问题时更可能还有维护者在跟进。"],
+      ["信号 02", "Issue 数量", "Open issue 只能粗略反映当前的支持负荷，并不能代表项目质量。"],
+      ["信号 03", "文档完整度", "公开描述和主题标签越清楚，越容易在 clone 前做出判断。"],
+      ["信号 04", "许可证", "许可证决定你能否以及如何改造、分享或再发布项目内容。"],
     ],
-    demandTitle: "大家正在寻找什么。",
-    demandBody: "投稿数据库连通后，这里只会展示策展人审核过的、聚合后的需求主题，不会显示私人学习目标。",
+    demandTitle: "大家都在找什么。",
+    demandBody: "投稿数据库接通后，这里只会显示经策展人审核的汇总需求，不会公开任何人的学习目标。",
     addSignal: "推荐项目",
     tryEyebrow: "带公开主页的项目",
-    tryTitle: "直接打开，在浏览器里看看。",
-    tryBody: "这些条目声明了项目主页。先访问它，再决定它是否适合你的课堂或 build stack。",
+    tryTitle: "打开官网，亲自看看。",
+    tryBody: "这些条目都提供公开主页。先去看看，再判断它是否值得放进你的课堂或工具栈。",
     seeAll: "在索引中查看全部 ↓",
     search: "搜索项目、主题……",
     showMe: "显示方式",
@@ -140,11 +138,10 @@ const GUIDE = {
     language: "主要语言",
     index: "索引",
     inView: "个项目正在显示",
-    generatedHint: "项目画像来自已核验元数据，不是网站截图。",
+    generatedHint: "预览来自 GitHub 或已记录的项目主页，并不代表产品评测。",
     noResults: "没有项目符合这组条件。",
     clear: "清除筛选",
     drop: "移除最窄的条件",
-    sourceGenerated: "项目画像",
     sourceDemo: "官网截图",
     maintained: "活跃",
     issues: "议题",
@@ -179,12 +176,8 @@ function repositoryText(record) { return [record.full_name, record.name, record.
 function skillText(record) { return [record.skill_name, record.description, record.source_repository?.full_name, ...(record.ecosystems || []), record.skill_path].filter(Boolean).join(" "); }
 function matchedSubjects(record) { const haystack = repositoryText(record); return SUBJECTS.filter(([, , , , expression]) => expression.test(haystack)); }
 function primarySubject(record) { return matchedSubjects(record)[0] || SUBJECTS.find(([id]) => id === "learning-systems"); }
-function shape(record) { return SHAPES[record.entity_kind] || "repo"; }
 function safeHomepage(record) { try { const url = new URL(record.homepage || ""); return ["http:", "https:"].includes(url.protocol) && !url.username && !url.password ? url.href : ""; } catch { return ""; } }
-function hash(value) { return [...String(value)].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) | 0, 0) >>> 0; }
-function round(value) { return Number(value.toFixed(3)); }
 function ownerName(record) { return record.owner?.login || String(record.full_name || "").split("/")[0] || "GitHub"; }
-function initials(value) { const words = String(value).replace(/([^A-Z])([A-Z])/g, "$1 $2").replace(/[^A-Za-z0-9]+/g, " ").trim().split(/\s+/).filter(Boolean); return (words.slice(0, 2).map((word) => word[0]).join("") || String(value).slice(0, 2)).toUpperCase(); }
 function signalLevel(record, name) {
   const observedAt = record.fetched_at || record.updated_at || record.pushed_at;
   const age = record.pushed_at && observedAt ? (Date.parse(observedAt) - Date.parse(record.pushed_at)) / DAY : Infinity;
@@ -204,48 +197,20 @@ function signalTitle(record, name, label) {
   return `${label}: ${record.license_spdx || "no licence detected"}. Permissive licences pass; copyleft/restricted licences warn.`;
 }
 
-function GeneratedPlate({ record, className = "" }) {
-  const [, tax, subject] = primarySubject(record); const hue = HUES[tax]; const seed = hash(`${ownerName(record)}/${record.name}`); const kind = shape(record); const label = kind === "dataset" ? "DATASET" : kind === "benchmark" ? "BENCHMARK" : kind === "list" ? "CURATED LIST" : "LEARNING TOOL";
-  const warm = ["#FFE4BD", "#FBE0F0", "#DFF5E8", "#DDE5FF"][seed % 4];
-  const bars = Array.from({ length: 4 }, (_, index) => 44 + ((seed >> (index * 3)) & 31) * 4);
-  return <svg className={className} viewBox="0 0 320 200" role="img" aria-label={`Metadata portrait for ${record.full_name || record.name}`}>
-    <rect width="320" height="200" fill={warm} />
-    <rect x="18" y="17" width="284" height="166" rx="14" fill="#FFFEFA" stroke={hue} strokeOpacity=".24" />
-    <rect x="18" y="17" width="284" height="27" rx="14" fill={hue} /><rect x="18" y="31" width="284" height="13" fill={hue} />
-    <circle cx="35" cy="30" r="3" fill="#fff" opacity=".85" /><circle cx="46" cy="30" r="3" fill="#fff" opacity=".55" /><circle cx="57" cy="30" r="3" fill="#fff" opacity=".3" />
-    <text x="75" y="33" fill="#fff" fontFamily="ui-monospace, monospace" fontSize="8" letterSpacing="1.4">{label}</text>
-    {kind === "dataset" ? <>
-      <text x="36" y="66" fill="#171827" fontFamily="Georgia, serif" fontSize="18">Open data, ready to inspect</text>
-      <rect x="36" y="78" width="248" height="15" rx="4" fill={hue} opacity=".13" />
-      {[0, 1, 2, 3].map((row) => <g key={row}><rect x="36" y={101 + row * 15} width="248" height="10" rx="3" fill="#F4F1EB" />{[0, 1, 2, 3].map((column) => <rect key={column} x={42 + column * 57} y={104 + row * 15} width={18 + ((seed >> (row + column)) & 3) * 8} height="4" rx="2" fill={hue} opacity={column === 0 ? ".72" : ".28"} />)}</g>)}
-    </> : kind === "benchmark" ? <>
-      <text x="36" y="66" fill="#171827" fontFamily="Georgia, serif" fontSize="18">Evidence at a glance</text>
-      <text x="36" y="82" fill="#71717D" fontFamily="ui-monospace, monospace" fontSize="7" letterSpacing=".8">TASK · METHOD · RESULT</text>
-      {bars.map((width, index) => <g key={index}><rect x="36" y={96 + index * 18} width="228" height="10" rx="5" fill="#F1EEE8" /><rect x="36" y={96 + index * 18} width={width} height="10" rx="5" fill={hue} /><rect x="270" y={97 + index * 18} width="12" height="8" rx="2" fill={index % 2 ? "#F6C358" : "#F3A7C5"} /></g>)}
-    </> : kind === "list" ? <>
-      <text x="36" y="66" fill="#171827" fontFamily="Georgia, serif" fontSize="18">A reading shelf</text>
-      {[0, 1, 2, 3, 4].map((index) => <g key={index}><rect x={36 + index * 45} y={84 + ((seed >> index) & 1) * 7} width="32" height={60 - ((seed >> (index + 4)) & 3) * 5} rx="4" fill={index % 2 ? hue : "#F6C358"} opacity={index % 2 ? ".82" : ".88"} /><rect x={41 + index * 45} y={94 + ((seed >> index) & 1) * 7} width="22" height="3" rx="1.5" fill="#fff" opacity=".7" /></g>)}
-    </> : <>
-      <text x="36" y="66" fill="#171827" fontFamily="Georgia, serif" fontSize="18">Build a lesson path</text>
-      <text x="36" y="82" fill="#71717D" fontFamily="ui-monospace, monospace" fontSize="7" letterSpacing=".8">{subject.toUpperCase()} · EXPLORE · PRACTISE</text>
-      <rect x="36" y="96" width="104" height="55" rx="8" fill={hue} opacity=".12" /><rect x="151" y="96" width="133" height="22" rx="7" fill="#F5F1EB" /><rect x="151" y="128" width="95" height="23" rx="7" fill="#F5F1EB" />
-      <path d="M54 132 C72 106 89 151 116 111" fill="none" stroke={hue} strokeWidth="4" strokeLinecap="round" /><circle cx="54" cy="132" r="7" fill="#fff" stroke={hue} strokeWidth="3" /><circle cx="116" cy="111" r="7" fill={hue} />
-      <rect x="164" y="103" width="78" height="5" rx="2.5" fill={hue} opacity=".55" /><rect x="164" y="136" width="54" height="5" rx="2.5" fill={hue} opacity=".55" />
-    </>}
-  </svg>;
+function githubPreview(record) {
+  return record.full_name && record.html_url ? `https://opengraph.githubassets.com/eduos-radar/${encodeURIComponent(record.full_name)}` : "";
 }
 
-function OwnerMark({ record }) {
-  const [, tax] = primarySubject(record); const [failed, setFailed] = useState(false); const owner = ownerName(record);
-  return <span className="owner-mark" aria-label={owner}>{!failed ? <img src={`https://avatars.githubusercontent.com/${encodeURIComponent(owner)}?s=96`} width="46" height="46" alt="" onError={() => setFailed(true)} /> : <span style={{ "--mark-hue": HUES[tax] }}>{initials(owner)}</span>}</span>;
+function RepositoryFallback({ record, copy }) {
+  return <div className="repository-fallback"><span>{copy.github}</span><strong>{record.full_name || record.name || copy.github}</strong><small>{text(record.primary_language, "GitHub repository")}</small></div>;
 }
 
 function Visual({ record, copy }) {
-  const [, tax] = primarySubject(record); const screenshot = record.homepage_screenshot_url;
+  const [, tax] = primarySubject(record); const screenshot = record.homepage_screenshot_url; const preview = githubPreview(record); const [failed, setFailed] = useState(false);
+  const image = screenshot || (!failed && preview);
   return <div className={`plate-art t-${tax}`}>
-    {screenshot ? <img src={screenshot} alt={`${record.full_name || record.name} ${copy.sourceDemo}`} width="640" height="400" loading="lazy" /> : <GeneratedPlate record={record} />}
-    <span className="source-badge">{screenshot ? copy.sourceDemo : copy.sourceGenerated}</span>
-    <OwnerMark record={record} />
+    {image ? <img src={image} alt={`${record.full_name || record.name} ${screenshot ? copy.sourceDemo : copy.githubPreview}`} width="640" height="400" loading="lazy" onError={() => setFailed(true)} /> : <RepositoryFallback record={record} copy={copy} />}
+    <span className="source-badge">{screenshot ? copy.sourceDemo : image ? copy.githubPreview : copy.github}</span>
   </div>;
 }
 
