@@ -105,11 +105,11 @@ the GitHub metadata crawler before adding it to the published snapshot. Do not
 collect a name, email, IP address, or analytics identifier for the first launch
 unless there is a separate published privacy policy and retention decision.
 
-The website currently falls back to a complete GitHub social preview. Homepage
-screenshots should be generated and cached in a scheduled server-side job only
-after selecting a screenshot provider, budget, retention period, and URL-sharing
-disclosure. Do not call an anonymous screenshot provider from every visitor's
-browser request.
+The website currently falls back to a quiet repository information cover rather
+than GitHub's repeated default social preview. Homepage screenshots should be
+generated and cached in a scheduled server-side job only after selecting a
+screenshot provider, budget, retention period, and URL-sharing disclosure. Do
+not call an anonymous screenshot provider from every visitor's browser request.
 
 ## Robots, GitHub rate limits and attribution
 

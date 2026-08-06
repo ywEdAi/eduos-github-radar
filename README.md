@@ -124,11 +124,14 @@ Vercel account by this repository. To enable the outbound support button, set
 environment. Do not set `DATABASE_URL`, `GITHUB_TOKEN`, or `CRON_SECRET` until
 the scheduled-refresh architecture is explicitly enabled.
 
-The visible thumbnail uses GitHub's public social-preview endpoint with a local
-branded fallback. When a scheduled screenshot cache is configured,
-`homepage_screenshot_url` takes priority for repositories with a website. Do
-not call a third-party screenshot API from each public page view: it creates
-visitor-facing rate-limit failures and leaks every homepage URL to that vendor.
+The visible thumbnail is shown only when a source-attributed homepage screenshot
+has been cached. Otherwise the site uses a quiet repository information cover;
+it deliberately does not use GitHub's default social-preview image because that
+often repeats the Octocat across unrelated projects. When a scheduled screenshot
+cache is configured, it writes `homepage_screenshot_url` for repositories with a
+website. Do not call a third-party screenshot API from each public page view: it
+creates visitor-facing rate-limit failures and leaks every homepage URL to that
+vendor.
 
 For a larger run, set a read-only GitHub token in the shell, do not put it in
 `.env.example`, and partition the matrix by date/star ranges so that no query

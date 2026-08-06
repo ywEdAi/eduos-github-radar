@@ -63,7 +63,7 @@ const GUIDE = {
     language: "Primary language",
     index: "Index",
     inView: "projects in view",
-    generatedHint: "Previews come from GitHub or a recorded project website; they are not product reviews.",
+    generatedHint: "Website previews are shown only when a project has a cached, source-attributed capture.",
     noResults: "No projects fit that combination.",
     clear: "Clear filters",
     drop: "Drop the narrowest filter",
@@ -138,7 +138,7 @@ const GUIDE = {
     language: "主要语言",
     index: "索引",
     inView: "个项目正在显示",
-    generatedHint: "预览来自 GitHub 或已记录的项目主页，并不代表产品评测。",
+    generatedHint: "仅在项目已有标注来源的缓存官网截图时展示预览图，不代表产品评测。",
     noResults: "没有项目符合这组条件。",
     clear: "清除筛选",
     drop: "移除最窄的条件",
@@ -197,20 +197,17 @@ function signalTitle(record, name, label) {
   return `${label}: ${record.license_spdx || "no licence detected"}. Permissive licences pass; copyleft/restricted licences warn.`;
 }
 
-function githubPreview(record) {
-  return record.full_name && record.html_url ? `https://opengraph.githubassets.com/eduos-radar/${encodeURIComponent(record.full_name)}` : "";
-}
-
 function RepositoryFallback({ record, copy }) {
-  return <div className="repository-fallback"><span>{copy.github}</span><strong>{record.full_name || record.name || copy.github}</strong><small>{text(record.primary_language, "GitHub repository")}</small></div>;
+  const homepage = safeHomepage(record);
+  return <div className="repository-fallback"><span>{homepage ? copy.live : copy.github}</span><strong>{record.full_name || record.name || copy.github}</strong><small>{homepage ? new URL(homepage).hostname : text(record.primary_language, "GitHub repository")}</small></div>;
 }
 
 function Visual({ record, copy }) {
-  const [, tax] = primarySubject(record); const screenshot = record.homepage_screenshot_url; const preview = githubPreview(record); const [failed, setFailed] = useState(false);
-  const image = screenshot || (!failed && preview);
+  const [, tax] = primarySubject(record); const screenshot = record.homepage_screenshot_url; const [failed, setFailed] = useState(false);
+  const image = screenshot && !failed ? screenshot : "";
   return <div className={`plate-art t-${tax}`}>
-    {image ? <img src={image} alt={`${record.full_name || record.name} ${screenshot ? copy.sourceDemo : copy.githubPreview}`} width="640" height="400" loading="lazy" onError={() => setFailed(true)} /> : <RepositoryFallback record={record} copy={copy} />}
-    <span className="source-badge">{screenshot ? copy.sourceDemo : image ? copy.githubPreview : copy.github}</span>
+    {image ? <img src={image} alt={`${record.full_name || record.name} ${copy.sourceDemo}`} width="640" height="400" loading="lazy" onError={() => setFailed(true)} /> : <RepositoryFallback record={record} copy={copy} />}
+    <span className="source-badge">{image ? copy.sourceDemo : copy.github}</span>
   </div>;
 }
 
