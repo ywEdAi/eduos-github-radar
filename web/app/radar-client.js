@@ -13,159 +13,108 @@ const SUBJECTS = [
   ["learning-systems", "learn", "Learning systems", "学习系统", /education|edtech|learning|lms|course|curriculum|school/i],
 ];
 
-const HUES = { math: "#1B2AFF", lang: "#F5219A", sci: "#00B3A4", teach: "#FF7A00", learn: "#5A5F73", cs: "#7DBE12" };
-const DAY = 86400000;
-
 const GUIDE = {
   en: {
     snapshot: "Open-source education intelligence",
-    thesis: "Education-native projects on GitHub, read by someone who teaches.",
-    thesisMore: "Every entry shows its shape before you click.",
-    pages: ["What this is", "Today’s pick", "Browse by subject", "How to read a repo", "What people want"],
-    pageNo: "Page",
-    heroTitleStart: "See what a",
-    heroTitleAccent: "learning tool",
-    heroTitleEnd: "does before you clone it.",
-    heroBody: "Not a list of links. A field guide that makes the project, its current activity, documentation and licence legible before you spend an evening on it.",
+    thesis: "A human-readable index of education-native projects on GitHub.",
+    thesisMore: "Search the evidence before you decide what is worth opening, saving, or adapting.",
+    directoryTitle: "Start with the work you are trying to do.",
+    directoryCopy: "A project does not need a polished homepage to be useful. This directory keeps the essential public signals together: what it says it is, where it lives, how it is maintained, and what you may reuse.",
+    browseIndex: "Browse the index",
+    submitProject: "Submit a project",
     projects: "projects indexed",
-    liveDemos: "with a live website",
-    verified: "GitHub metadata verified",
-    browseSubject: "Browse by subject",
-    readSignals: "How to read a repo",
-    todayPick: "Today’s pick",
-    pickNote: "A project with a live website is useful only when its metadata is still trustworthy. Start with the demo, then inspect the four signals below.",
-    openEntry: "Open project ↗",
-    allProjects: "Browse all projects",
-    subjectTitle: "Start from what you teach.",
-    subjectCta: "Show projects",
-    checkTitle: "Four checks before you spend an evening on it.",
-    checks: [
-      ["Signal 01", "Recent activity", "A recently pushed repository is more likely to have an active maintainer when something breaks."],
-      ["Signal 02", "Issue load", "Open issues are a lightweight proxy for the project’s current support load, not a verdict on its quality."],
-      ["Signal 03", "Docs", "A description and useful public metadata make a repository much easier to evaluate before cloning."],
-      ["Signal 04", "Licence", "A clear licence tells you what you can adapt, share, or redistribute."],
-    ],
-    demandTitle: "What people are looking for.",
-    demandBody: "When the private submission inbox is connected, recurring needs will appear here only as curator-approved, aggregated themes.",
-    addSignal: "Add a signal",
-    tryEyebrow: "PROJECTS WITH A PUBLIC HOMEPAGE",
-    tryTitle: "Open it in a tab and see for yourself.",
-    tryBody: "These entries point to a declared project website. Visit it, then decide whether it belongs in your classroom or build stack.",
-    seeAll: "See all in the index ↓",
-    search: "Search projects, topics…",
-    showMe: "Show me",
+    liveDemos: "with a declared website",
+    verified: "metadata verified",
+    subjectIndex: "Browse by subject",
+    directoryNote: "Subjects are lightweight discovery cues based on public repository metadata, not a judgment about pedagogical quality.",
+    search: "Search projects, topics, or languages…",
+    showMe: "Availability",
     everything: "Everything",
-    live: "Has a live website",
-    screenshot: "Has a cached screenshot",
+    live: "Has a website",
     picks: "Gold seeds",
     projectShape: "Project shape",
     subject: "Subject",
     language: "Primary language",
-    index: "Index",
+    index: "Project index",
     inView: "projects in view",
-    generatedHint: "Website previews are shown only when a project has a cached, source-attributed capture.",
+    resultsHint: "Each row uses repository metadata only. Read the source before adopting or cloning anything.",
     noResults: "No projects fit that combination.",
     clear: "Clear filters",
-    drop: "Drop the narrowest filter",
-    sourceDemo: "Demo site",
-    maintained: "Maint.",
-    issues: "Issues",
-    docs: "Docs",
-    licence: "Licence",
-    stars: "stars",
-    forks: "forks",
-    updated: "updated",
+    drop: "Reset filters",
     github: "GitHub",
     skills: "Skills",
-    skillsTitle: "Public skills, arranged as a field guide.",
-    skillsBody: "Explore source-attributed skill manifests before installing, adapting, or connecting them to a learning workflow.",
+    skillsTitle: "Public skills, kept readable.",
+    skillsBody: "A source-attributed index of public skill manifests for people who want to inspect a workflow before installing or adapting it.",
     skillIndex: "Skills index",
     skillsInView: "skills in view",
-    skillsSearch: "Search skills, workflows…",
+    skillsSearch: "Search skills, workflows, or ecosystems…",
     skillSource: "Source repository",
-    skillResources: "Resource hints",
-    all: "All",
     support: "Support the Radar",
     sync: "snapshot",
     privateNotice: "Your learning goal stays private. A repository is published only after metadata verification.",
-    contributor: "Curator submission",
     curatorNote: "GitHub metadata verified",
     source: "Source",
+    latestPush: "Last push",
+    licence: "Licence",
+    projectType: "Type",
+    readme: "README ↗",
+    openGithub: "Open GitHub ↗",
+    repository: "Repository",
+    dataset: "Dataset",
+    benchmark: "Benchmark",
+    awesomeIndex: "Awesome index",
+    skill: "Skill",
   },
   zh: {
     snapshot: "开源教育项目雷达",
-    thesis: "从教学视角解读的 GitHub 教育项目。",
-    thesisMore: "点击之前，先判断它是否适合你的课堂或工具栈。",
-    pages: ["这里是什么", "今日精选", "按学科浏览", "如何判断一个仓库", "大家在找什么"],
-    pageNo: "第",
-    heroTitleStart: "克隆之前，先弄清这个",
-    heroTitleAccent: "学习工具",
-    heroTitleEnd: "到底能做什么。",
-    heroBody: "这不是链接清单，而是一份项目导览。在花时间深入之前，先看清它的用途、活跃度、文档和许可证。",
+    thesis: "一个以教学与学习为视角整理的 GitHub 教育项目索引。",
+    thesisMore: "在决定打开、收藏或改造之前，先从公开信息快速判断它是否值得继续看。",
+    directoryTitle: "先从你真正要解决的教学与学习问题开始。",
+    directoryCopy: "一个项目不一定有漂亮的官网，才值得了解。这里把最关键的公开线索放在一起：它自称在做什么、项目在哪里、最近是否仍在维护，以及许可证允许你怎样使用。",
+    browseIndex: "浏览项目索引",
+    submitProject: "推荐一个项目",
     projects: "个项目已收录",
-    liveDemos: "个有公开网站",
-    verified: "条 GitHub 元数据已核验",
-    browseSubject: "按学科浏览",
-    readSignals: "如何读一个 repo",
-    todayPick: "今日精选",
-    pickNote: "一个有公开网站的项目，仍要先确认它的元数据是否可信。先试 demo，再看下方四个信号。",
-    openEntry: "打开项目 ↗",
-    allProjects: "浏览全部项目",
-    subjectTitle: "从你正在教的内容开始。",
-    subjectCta: "显示项目",
-    checkTitle: "花时间深入之前，先看四个信号。",
-    checks: [
-      ["信号 01", "近期活跃度", "近期仍有提交的仓库，遇到问题时更可能还有维护者在跟进。"],
-      ["信号 02", "Issue 数量", "Open issue 只能粗略反映当前的支持负荷，并不能代表项目质量。"],
-      ["信号 03", "文档完整度", "公开描述和主题标签越清楚，越容易在 clone 前做出判断。"],
-      ["信号 04", "许可证", "许可证决定你能否以及如何改造、分享或再发布项目内容。"],
-    ],
-    demandTitle: "大家都在找什么。",
-    demandBody: "投稿数据库接通后，这里只会显示经策展人审核的汇总需求，不会公开任何人的学习目标。",
-    addSignal: "推荐项目",
-    tryEyebrow: "带公开主页的项目",
-    tryTitle: "打开官网，亲自看看。",
-    tryBody: "这些条目都提供公开主页。先去看看，再判断它是否值得放进你的课堂或工具栈。",
-    seeAll: "在索引中查看全部 ↓",
-    search: "搜索项目、主题……",
-    showMe: "显示方式",
+    liveDemos: "个提供公开主页",
+    verified: "元数据已核验",
+    subjectIndex: "按学科浏览",
+    directoryNote: "学科标签来自公开仓库元数据，只用于帮助发现项目，并不代表对教学价值的判断。",
+    search: "搜索项目、主题或编程语言……",
+    showMe: "可用信息",
     everything: "全部项目",
-    live: "有公开网站",
-    screenshot: "有缓存截图",
-    picks: "Gold seed",
+    live: "有公开主页",
+    picks: "重点线索",
     projectShape: "项目类型",
     subject: "学科",
     language: "主要语言",
-    index: "索引",
+    index: "项目索引",
     inView: "个项目正在显示",
-    generatedHint: "仅在项目已有标注来源的缓存官网截图时展示预览图，不代表产品评测。",
+    resultsHint: "每一行只使用仓库公开元数据。采用或 clone 前，请先阅读来源项目。",
     noResults: "没有项目符合这组条件。",
     clear: "清除筛选",
-    drop: "移除最窄的条件",
-    sourceDemo: "官网截图",
-    maintained: "活跃",
-    issues: "议题",
-    docs: "文档",
-    licence: "许可",
-    stars: "Stars",
-    forks: "Forks",
-    updated: "更新",
+    drop: "重置筛选",
     github: "GitHub",
     skills: "Skills",
-    skillsTitle: "把公开 skills 当作一份 field guide 来阅读。",
-    skillsBody: "安装、改造或接入教学工作流前，先浏览标注来源的公开 skill manifest。",
+    skillsTitle: "把公开 Skill 先读明白。",
+    skillsBody: "一个标注来源的公开 Skill manifest 索引，帮助你在安装或改造工作流之前，先理解它的用途与来源。",
     skillIndex: "Skills 索引",
     skillsInView: "个 Skill 正在显示",
-    skillsSearch: "搜索 Skill、工作流……",
+    skillsSearch: "搜索 Skill、工作流或生态……",
     skillSource: "来源仓库",
-    skillResources: "资源提示",
-    all: "全部",
     support: "支持 Radar",
-    sync: "快照",
-    privateNotice: "你的学习目标保持私密。仓库通过元数据核验后才会公开。",
-    contributor: "策展投稿",
+    sync: "数据快照",
+    privateNotice: "你的学习目标始终保持私密。项目通过元数据核验后才会公开显示。",
     curatorNote: "GitHub 元数据已核验",
     source: "来源",
+    latestPush: "最近推送",
+    licence: "许可证",
+    projectType: "类型",
+    readme: "查看 README ↗",
+    openGithub: "打开 GitHub ↗",
+    repository: "代码仓库",
+    dataset: "数据集",
+    benchmark: "基准测试",
+    awesomeIndex: "Awesome 索引",
+    skill: "Skill",
   },
 };
 
@@ -178,109 +127,98 @@ function matchedSubjects(record) { const haystack = repositoryText(record); retu
 function primarySubject(record) { return matchedSubjects(record)[0] || SUBJECTS.find(([id]) => id === "learning-systems"); }
 function safeHomepage(record) { try { const url = new URL(record.homepage || ""); return ["http:", "https:"].includes(url.protocol) && !url.username && !url.password ? url.href : ""; } catch { return ""; } }
 function ownerName(record) { return record.owner?.login || String(record.full_name || "").split("/")[0] || "GitHub"; }
-function signalLevel(record, name) {
-  const observedAt = record.fetched_at || record.updated_at || record.pushed_at;
-  const age = record.pushed_at && observedAt ? (Date.parse(observedAt) - Date.parse(record.pushed_at)) / DAY : Infinity;
-  if (name === "maintained") return age <= 90 ? "pass" : age <= 365 ? "warn" : "fail";
-  if (name === "issues") { const issues = record.metrics?.open_issues; return issues === null || issues === undefined ? "warn" : issues < 60 ? "pass" : issues < 300 ? "warn" : "fail"; }
-  if (name === "docs") return record.description && (record.topics || []).length ? "pass" : record.description || (record.topics || []).length ? "warn" : "fail";
-  const licence = record.license_spdx || "";
-  if (!licence) return "fail";
-  return /^(MIT|Apache-2\.0|BSD-|ISC|CC0|CC-BY|Unlicense)/i.test(licence) ? "pass" : "warn";
-}
-function signalTitle(record, name, label) {
-  const observedAt = record.fetched_at || record.updated_at || record.pushed_at;
-  const age = record.pushed_at && observedAt ? Math.max(0, Math.floor((Date.parse(observedAt) - Date.parse(record.pushed_at)) / DAY)) : null;
-  if (name === "maintained") return `${label}: ${age === null ? "no push date" : `${age} days since last push`}. Pass: ≤90 days; warn: ≤365 days.`;
-  if (name === "issues") return `${label}: ${record.metrics?.open_issues ?? "unknown"} open issues. This is an issue-load proxy, not a maintainer-reply measure.`;
-  if (name === "docs") return `${label}: based on whether the public GitHub description and topics are present.`;
-  return `${label}: ${record.license_spdx || "no licence detected"}. Permissive licences pass; copyleft/restricted licences warn.`;
+function kindLabel(kind, copy) { return { repo: copy.repository, dataset: copy.dataset, benchmark: copy.benchmark, awesome_index: copy.awesomeIndex }[kind] || copy.repository; }
+
+function SubjectMark({ record, locale }) {
+  const subjects = matchedSubjects(record); const [, tax, en, zh] = primarySubject(record);
+  return <div className="subject-line"><span className={`subject-dot t-${tax}`} aria-hidden="true" />{locale === "zh" ? zh : en}{subjects[1] ? <span>· {locale === "zh" ? subjects[1][3] : subjects[1][2]}</span> : null}</div>;
 }
 
-function RepositoryFallback({ record, copy }) {
+function ProjectRow({ record, copy, locale }) {
   const homepage = safeHomepage(record);
-  return <div className="repository-fallback"><span>{homepage ? copy.live : copy.github}</span><strong>{record.full_name || record.name || copy.github}</strong><small>{homepage ? new URL(homepage).hostname : text(record.primary_language, "GitHub repository")}</small></div>;
-}
-
-function Visual({ record, copy }) {
-  const [, tax] = primarySubject(record); const screenshot = record.homepage_screenshot_url; const [failed, setFailed] = useState(false);
-  const image = screenshot && !failed ? screenshot : "";
-  return <div className={`plate-art t-${tax}`}>
-    {image ? <img src={image} alt={`${record.full_name || record.name} ${copy.sourceDemo}`} width="640" height="400" loading="lazy" onError={() => setFailed(true)} /> : <RepositoryFallback record={record} copy={copy} />}
-    <span className="source-badge">{image ? copy.sourceDemo : copy.github}</span>
-  </div>;
-}
-
-function Signal({ record, name, label }) { const state = signalLevel(record, name); return <span className={`signal signal-${state}`} title={signalTitle(record, name, label)} aria-label={signalTitle(record, name, label)}>{label}</span>; }
-
-function ProjectCard({ record, copy, locale }) {
-  const subjects = matchedSubjects(record); const [primary, tax, en, zh] = primarySubject(record); const homepage = safeHomepage(record);
-  return <article className={`plate-card t-${tax}`}>
-    <Visual record={record} copy={copy} />
-    <div className="plate-body">
-      <span className="plate-owner">{ownerName(record)} /</span>
-      <a className="plate-name" href={record.html_url} target="_blank" rel="noreferrer">{record.name}</a>
-      <p className="plate-description">{text(record.description, locale === "zh" ? "等待下一次 GitHub 元数据核验。" : "Awaiting the next GitHub metadata verification.")}</p>
-      <div className="chipline"><span className="topic-chip">{locale === "zh" ? zh : en}</span>{subjects[1] ? <span className="topic-chip topic-alt">{locale === "zh" ? subjects[1][3] : subjects[1][2]}</span> : null}</div>
-      <div className="signals"><Signal record={record} name="maintained" label={copy.maintained} /><Signal record={record} name="issues" label={copy.issues} /><Signal record={record} name="docs" label={copy.docs} /><Signal record={record} name="licence" label={copy.licence} /></div>
-      <div className="plate-stats"><span>★ <b>{compactNumber(record.metrics?.stars, locale)}</b></span><span>⑂ <b>{compactNumber(record.metrics?.forks, locale)}</b></span><span>{text(record.primary_language)}</span></div>
-      <div className="plate-links">{homepage ? <a href={homepage} target="_blank" rel="noreferrer">{copy.openEntry}</a> : null}{record.html_url ? <a href={`${record.html_url}#readme`} target="_blank" rel="noreferrer">README ↗</a> : null}</div>
+  return <article className="project-row">
+    <div className="project-main">
+      <p className="project-kicker"><span>{kindLabel(record.entity_kind, copy)}</span><span>{record.verification_status === "verified" ? copy.verified : copy.awaiting}</span></p>
+      <p className="project-owner">{ownerName(record)} /</p>
+      <h3><a href={record.html_url} target="_blank" rel="noreferrer">{record.name || record.full_name}</a></h3>
+      <p className="project-description">{text(record.description, locale === "zh" ? "等待下一次 GitHub 元数据核验。" : "Awaiting the next GitHub metadata verification.")}</p>
+      <SubjectMark record={record} locale={locale} />
+    </div>
+    <dl className="project-facts">
+      <div><dt>{copy.stars}</dt><dd>{compactNumber(record.metrics?.stars, locale)}</dd></div>
+      <div><dt>{copy.latestPush}</dt><dd>{displayDate(record.pushed_at)}</dd></div>
+      <div><dt>{copy.language}</dt><dd>{text(record.primary_language)}</dd></div>
+      <div><dt>{copy.licence}</dt><dd>{text(record.license_spdx)}</dd></div>
+    </dl>
+    <div className="project-actions">
+      {homepage ? <a href={homepage} target="_blank" rel="noreferrer">{copy.visitWebsite}</a> : null}
+      <a href={record.html_url} target="_blank" rel="noreferrer">{copy.openGithub}</a>
+      <a href={`${record.html_url}#readme`} target="_blank" rel="noreferrer">{copy.readme}</a>
     </div>
   </article>;
 }
 
-function SkillCard({ record, copy, locale }) {
-  const source = record.source_repository || {}; const pseudoRecord = { full_name: record.skill_name, name: record.skill_name, owner: { login: source.owner?.login || source.full_name?.split("/")[0] || "Skill" }, entity_kind: "repo", description: record.description, topics: record.ecosystems || [] };
-  return <article className="plate-card t-learn"><Visual record={pseudoRecord} copy={copy} /><div className="plate-body"><span className="plate-owner">{source.full_name || copy.source} /</span><a className="plate-name" href={record.manifest_url} target="_blank" rel="noreferrer">{record.skill_name}</a><p className="plate-description">{text(record.description, "Public source manifest metadata.")}</p><div className="chipline">{(record.ecosystems || []).slice(0, 2).map((item) => <span className="topic-chip" key={item}>{item}</span>)}</div><div className="signals"><span className="signal signal-pass">MANIFEST</span><span className="signal signal-warn">SOURCE</span><span className="signal signal-pass">PUBLIC</span><span className="signal signal-warn">META</span></div><div className="plate-stats"><span>★ <b>{compactNumber(source.stars, locale)}</b></span><span>{displayDate(source.pushed_at || source.updated_at)}</span></div><div className="plate-links">{source.html_url ? <a href={source.html_url} target="_blank" rel="noreferrer">{copy.openEntry}</a> : null}<a href={record.manifest_url} target="_blank" rel="noreferrer">SKILL.md ↗</a></div></div></article>;
+function SkillRow({ record, copy, locale }) {
+  const source = record.source_repository || {};
+  return <article className="project-row skill-row">
+    <div className="project-main">
+      <p className="project-kicker"><span>{copy.skill}</span><span>{copy.source}</span></p>
+      <p className="project-owner">{source.full_name || copy.skillSource} /</p>
+      <h3><a href={record.manifest_url} target="_blank" rel="noreferrer">{record.skill_name}</a></h3>
+      <p className="project-description">{text(record.description, copy.skillDescriptionUnavailable)}</p>
+      <div className="subject-line"><span className="subject-dot t-learn" aria-hidden="true" />{(record.ecosystems || []).slice(0, 2).join(" · ") || copy.sourceManifest}</div>
+    </div>
+    <dl className="project-facts">
+      <div><dt>{copy.sourceStars}</dt><dd>{compactNumber(source.stars, locale)}</dd></div>
+      <div><dt>{copy.sourceUpdated}</dt><dd>{displayDate(source.pushed_at || source.updated_at)}</dd></div>
+      <div><dt>{copy.resources}</dt><dd>{[source.license_spdx, record.resource_hints?.scripts ? "scripts" : ""].filter(Boolean).join(" · ") || "—"}</dd></div>
+    </dl>
+    <div className="project-actions">
+      {source.html_url ? <a href={source.html_url} target="_blank" rel="noreferrer">{copy.openGithub}</a> : null}
+      <a href={record.manifest_url} target="_blank" rel="noreferrer">{copy.viewManifest}</a>
+    </div>
+  </article>;
 }
 
 function SuggestionForm({ copy }) {
   const [repo, setRepo] = useState(""); const [goal, setGoal] = useState(""); const [status, setStatus] = useState(""); const [submitting, setSubmitting] = useState(false);
   const submit = async (event) => { event.preventDefault(); setStatus(""); setSubmitting(true); try { const response = await fetch("/api/suggestions", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ repository: repo, learningGoal: goal }) }); const result = await response.json(); if (!response.ok) { setStatus(result.code === "INVALID_REPOSITORY" ? "invalid" : result.code === "DATABASE_NOT_CONFIGURED" ? "unavailable" : "error"); return; } setRepo(""); setGoal(""); setStatus("sent"); } catch { setStatus("error"); } finally { setSubmitting(false); } };
   const message = { sent: copy.submissionSent, invalid: copy.submissionInvalid, unavailable: copy.submissionUnavailable, error: copy.submissionError }[status];
-  return <section className="contribute" id="add-signal"><div><p className="eyebrow">{copy.suggestEyebrow}</p><h2>{copy.suggestTitle}</h2><p>{copy.suggestCopy}</p></div><form onSubmit={submit}><label>{copy.repoLabel}<input required value={repo} onChange={(event) => setRepo(event.target.value)} placeholder={copy.repoPlaceholder} /></label><label>{copy.goalLabel}<small>{copy.goalPrivate}</small><textarea required rows="3" value={goal} onChange={(event) => setGoal(event.target.value)} placeholder={copy.goalPlaceholder} /></label><button className="button button-ink" disabled={submitting}>{copy.submitSignal}</button>{message ? <p className={`form-status ${status}`}>{message}</p> : null}</form></section>;
+  return <section className="contribute" id="add-signal"><div><p className="eyebrow">{copy.suggestEyebrow}</p><h2>{copy.suggestTitle}</h2><p>{copy.suggestCopy}</p><small>{copy.privateNotice}</small></div><form onSubmit={submit}><label>{copy.repoLabel}<input required value={repo} onChange={(event) => setRepo(event.target.value)} placeholder={copy.repoPlaceholder} /></label><label>{copy.goalLabel}<small>{copy.goalPrivate}</small><textarea required rows="3" value={goal} onChange={(event) => setGoal(event.target.value)} placeholder={copy.goalPlaceholder} /></label><button className="button button-accent" disabled={submitting}>{copy.submitSignal}</button>{message ? <p className={`form-status ${status}`} role="status">{message}</p> : null}</form></section>;
 }
 
-function Book({ records, copy, locale, onSubject, onBrowse }) {
-  const [current, setCurrent] = useState(0); const [direction, setDirection] = useState("next"); const touchStart = useRef(null);
-  const subjectCounts = useMemo(() => Object.fromEntries(SUBJECTS.map(([id]) => [id, records.filter((record) => matchedSubjects(record).some(([subjectId]) => subjectId === id)).length])), [records]);
-  const demos = records.filter((record) => safeHomepage(record)); const featured = demos.sort((a, b) => (b.metrics?.stars || 0) - (a.metrics?.stars || 0))[0] || records[0];
-  const go = (next) => { const target = (next + 5) % 5; if (target === current) return; setDirection(target > current || (current === 4 && target === 0) ? "next" : "prev"); setCurrent(target); };
-  const labels = copy.pages;
-  const pageContent = [
-    <div className="hero-split"><div><p className="page-no">{copy.pageNo} 01 — {labels[0]}</p><h1>{copy.heroTitleStart} <em>{copy.heroTitleAccent}</em> {copy.heroTitleEnd}</h1><p>{copy.heroBody}</p><div className="stat-row"><div><b>{records.length}</b>{copy.projects}</div><div><b>{demos.length}</b>{copy.liveDemos}</div><div><b>{records.filter((record) => record.verification_status === "verified").length}</b>{copy.verified}</div></div><div className="page-cta"><button className="button button-ink" onClick={() => go(2)}>{copy.browseSubject}</button><button className="button button-ghost" onClick={() => go(3)}>{copy.readSignals}</button></div></div>{featured ? <div className={`hero-portrait t-${primarySubject(featured)[1]}`}><Visual record={featured} copy={copy} /><div><span>{copy.todayPick}</span><strong>{featured.name}</strong><small>{ownerName(featured)} · {locale === "zh" ? primarySubject(featured)[3] : primarySubject(featured)[2]}</small></div></div> : null}</div>,
-    featured ? <><p className="page-no">{copy.pageNo} 02 — {copy.todayPick}</p><div className="feature-pick"><div className="feature-art"><Visual record={featured} copy={copy} /></div><div><span className="plate-owner">{ownerName(featured)} /</span><a className="feature-name" href={featured.html_url} target="_blank" rel="noreferrer">{featured.name}</a><blockquote>{copy.pickNote}</blockquote><div className="page-cta"><a className="button button-ink" href={featured.html_url} target="_blank" rel="noreferrer">{copy.openEntry}</a><button className="button button-ghost" onClick={onBrowse}>{copy.allProjects}</button></div></div></div></> : null,
-    <><p className="page-no">{copy.pageNo} 03 — {labels[2]}</p><h2>{copy.subjectTitle}</h2><div className="subject-swatch-grid">{SUBJECTS.map(([id, tax, en, zh]) => <button className={`subject-swatch t-${tax}`} onClick={() => onSubject(id)} key={id}><i /><span>{locale === "zh" ? zh : en}</span><small>{subjectCounts[id]}</small></button>)}</div></>,
-    <><p className="page-no">{copy.pageNo} 04 — {labels[3]}</p><h2>{copy.checkTitle}</h2><div className="checks">{copy.checks.map(([signal, title, description]) => <div className="check" key={title}><span>{signal}</span><h3>{title}</h3><p>{description}</p></div>)}</div></>,
-    <><p className="page-no">{copy.pageNo} 05 — {labels[4]}</p><h2>{copy.demandTitle}</h2><p>{copy.demandBody}</p><div className="page-cta"><a className="button button-primary" href="#add-signal">{copy.addSignal}</a></div></>,
-  ];
-  return <section className="field-guide" onKeyDown={(event) => { if (event.key === "ArrowRight") { event.preventDefault(); go(current + 1); } if (event.key === "ArrowLeft") { event.preventDefault(); go(current - 1); } }} onTouchStart={(event) => { touchStart.current = event.touches[0]?.clientX; }} onTouchEnd={(event) => { const distance = (event.changedTouches[0]?.clientX || 0) - (touchStart.current || 0); if (Math.abs(distance) > 55) go(current + (distance < 0 ? 1 : -1)); touchStart.current = null; }}>
-    <div className="guide-stage">{pageContent.map((content, index) => <div key={index} role="tabpanel" id={`guide-page-${index}`} aria-labelledby={`guide-tab-${index}`} className={`guide-page ${direction}`} hidden={index !== current}>{content}</div>)}</div>
-    <div className="guide-tabs" role="tablist" aria-label="Field guide pages"><span className="contents-label">Contents</span>{labels.map((label, index) => <button id={`guide-tab-${index}`} role="tab" aria-selected={index === current} aria-controls={`guide-page-${index}`} tabIndex={index === current ? 0 : -1} onClick={() => go(index)} onKeyDown={(event) => { if (event.key === "Home") { event.preventDefault(); go(0); } if (event.key === "End") { event.preventDefault(); go(4); } }} key={label}><span>{String(index + 1).padStart(2, "0")}</span>{label}</button>)}<div className="guide-controls"><small>Explore</small><button onClick={() => go(current - 1)} aria-label="Previous field guide page">←</button><button onClick={() => go(current + 1)} aria-label="Next field guide page">→</button></div></div>
+function DirectoryIntro({ records, copy, locale, onSubject, onBrowse }) {
+  const counts = useMemo(() => Object.fromEntries(SUBJECTS.map(([id]) => [id, records.filter((record) => matchedSubjects(record).some(([subjectId]) => subjectId === id)).length])), [records]);
+  const verified = records.filter((record) => record.verification_status === "verified").length;
+  const live = records.filter((record) => safeHomepage(record)).length;
+  return <section className="directory-intro">
+    <div className="intro-copy"><p className="eyebrow">{copy.snapshot}</p><h1>{copy.directoryTitle}</h1><p>{copy.directoryCopy}</p><div className="intro-actions"><button className="text-link" onClick={onBrowse}>{copy.browseIndex} ↓</button><a className="text-link" href="#add-signal">{copy.submitProject} ↓</a></div></div>
+    <dl className="directory-stats"><div><dd>{records.length}</dd><dt>{copy.projects}</dt></div><div><dd>{live}</dd><dt>{copy.liveDemos}</dt></div><div><dd>{verified}</dd><dt>{copy.verified}</dt></div></dl>
+    <div className="subject-index"><p>{copy.subjectIndex}</p><nav aria-label={copy.subjectIndex}>{SUBJECTS.map(([id, tax, en, zh]) => <button key={id} className={`subject-choice t-${tax}`} onClick={() => onSubject(id)}><span aria-hidden="true" />{locale === "zh" ? zh : en}<b>{counts[id]}</b></button>)}</nav><small>{copy.directoryNote}</small></div>
   </section>;
 }
 
 export default function RadarClient({ payload, skillsPayload, supportUrl }) {
-  const [locale, setLocale] = useState("en"); const [catalog, setCatalog] = useState("github"); const [query, setQuery] = useState(""); const [show, setShow] = useState("all"); const [kind, setKind] = useState(""); const [subject, setSubject] = useState(""); const [language, setLanguage] = useState(""); const indexRef = useRef(null);
+  const [locale, setLocale] = useState("en"); const [catalog, setCatalog] = useState("github"); const [query, setQuery] = useState(""); const [show, setShow] = useState("all"); const [kind, setKind] = useState(""); const [subject, setSubject] = useState(""); const [language, setLanguage] = useState(""); const [sort, setSort] = useState("stars"); const indexRef = useRef(null);
   useEffect(() => { const saved = initialLocale(); setLocale(saved); document.documentElement.lang = saved === "zh" ? "zh-CN" : "en"; }, []);
-  useEffect(() => { const params = new URLSearchParams(); if (catalog !== "github") params.set("catalog", catalog); if (query) params.set("q", query); if (show !== "all") params.set("has", show); if (kind) params.set("shape", kind); if (subject) params.set("subject", subject); if (language) params.set("language", language); const next = `${window.location.pathname}${params.size ? `?${params}` : ""}`; window.history.replaceState(null, "", next); }, [catalog, query, show, kind, subject, language]);
+  useEffect(() => { const params = new URLSearchParams(); if (catalog !== "github") params.set("catalog", catalog); if (query) params.set("q", query); if (show !== "all") params.set("has", show); if (kind) params.set("shape", kind); if (subject) params.set("subject", subject); if (language) params.set("language", language); if (sort !== "stars") params.set("sort", sort); const next = `${window.location.pathname}${params.size ? `?${params}` : ""}`; window.history.replaceState(null, "", next); }, [catalog, query, show, kind, subject, language, sort]);
   const switchLocale = (next) => { setLocale(next); window.localStorage.setItem("radar-locale", next); document.documentElement.lang = next === "zh" ? "zh-CN" : "en"; };
   const copy = { ...COPY[locale], ...GUIDE[locale] }; const records = payload.records || []; const skillRecords = skillsPayload.records || []; const isSkills = catalog === "skills";
   const languages = useMemo(() => [...new Set(records.map((record) => record.primary_language).filter(Boolean))].sort((a, b) => a.localeCompare(b)), [records]);
   const allSubjects = useMemo(() => Object.fromEntries(SUBJECTS.map(([id]) => [id, records.filter((record) => matchedSubjects(record).some(([subjectId]) => subjectId === id)).length])), [records]);
-  const filtered = useMemo(() => { if (isSkills) return skillRecords.filter((record) => !query || skillText(record).toLowerCase().includes(query.toLowerCase())); return records.filter((record) => !query || repositoryText(record).toLowerCase().includes(query.toLowerCase())).filter((record) => show === "all" || show === "live" && Boolean(safeHomepage(record)) || show === "screenshot" && Boolean(record.homepage_screenshot_url) || show === "picks" && record.gold_seed).filter((record) => !kind || record.entity_kind === kind).filter((record) => !subject || matchedSubjects(record).some(([id]) => id === subject)).filter((record) => !language || record.primary_language === language).sort((a, b) => (b.metrics?.stars || 0) - (a.metrics?.stars || 0)); }, [isSkills, skillRecords, records, query, show, kind, subject, language]);
+  const filtered = useMemo(() => {
+    if (isSkills) return skillRecords.filter((record) => !query || skillText(record).toLowerCase().includes(query.toLowerCase())).sort((a, b) => (b.source_repository?.stars || 0) - (a.source_repository?.stars || 0));
+    const date = (record, fields) => Math.max(...fields.map((field) => Date.parse(record[field]) || 0));
+    const ordered = records.filter((record) => !query || repositoryText(record).toLowerCase().includes(query.toLowerCase())).filter((record) => show === "all" || show === "live" && Boolean(safeHomepage(record)) || show === "picks" && record.gold_seed).filter((record) => !kind || record.entity_kind === kind).filter((record) => !subject || matchedSubjects(record).some(([id]) => id === subject)).filter((record) => !language || record.primary_language === language);
+    return ordered.sort((a, b) => sort === "stars" ? (b.metrics?.stars || 0) - (a.metrics?.stars || 0) : sort === "updated" ? date(b, ["pushed_at", "updated_at"]) - date(a, ["pushed_at", "updated_at"]) : sort === "synced" ? date(b, ["fetched_at"]) - date(a, ["fetched_at"]) : date(b, ["first_seen", "fetched_at"]) - date(a, ["first_seen", "fetched_at"]));
+  }, [isSkills, skillRecords, records, query, show, kind, subject, language, sort]);
   const scrollToIndex = () => indexRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   const useSubject = (id) => { setCatalog("github"); setSubject(id); setShow("all"); scrollToIndex(); };
-  const reset = () => { setQuery(""); setShow("all"); setKind(""); setSubject(""); setLanguage(""); };
-  const filterGroups = [
-    [copy.showMe, [["all", copy.everything, records.length], ["live", copy.live, records.filter((record) => safeHomepage(record)).length], ["screenshot", copy.screenshot, records.filter((record) => record.homepage_screenshot_url).length], ["picks", copy.picks, records.filter((record) => record.gold_seed).length]]],
-    [copy.projectShape, [["repo", locale === "zh" ? "代码仓库" : "Repositories", payload.counts?.entity_kind?.repo || 0], ["dataset", locale === "zh" ? "数据集" : "Datasets", payload.counts?.entity_kind?.dataset || 0], ["benchmark", locale === "zh" ? "基准测试" : "Benchmarks", payload.counts?.entity_kind?.benchmark || 0], ["awesome_index", locale === "zh" ? "Awesome 索引" : "Awesome lists", payload.counts?.entity_kind?.awesome_index || 0]]],
-  ];
-  return <main className="radar"><header className="nav"><Link href="/" className="wordmark">EDUOS <em>Radar</em></Link><nav className="segmented" aria-label="Catalog"><button aria-pressed={!isSkills} onClick={() => { setCatalog("github"); reset(); }}>{copy.github}</button><button aria-pressed={isSkills} onClick={() => { setCatalog("skills"); reset(); }}>{copy.skills}</button></nav><div className="nav-right"><span className="sync"><i />{copy.sync} {payload.generated_at?.slice(0, 10)}</span><div className="language-switch"><button className={locale === "en" ? "active" : ""} onClick={() => switchLocale("en")}>EN</button><button className={locale === "zh" ? "active" : ""} onClick={() => switchLocale("zh")}>中文</button></div>{supportUrl ? <a className="button button-primary" href={supportUrl} target="_blank" rel="noreferrer">{copy.support} ↗</a> : <a className="button button-primary" href="#add-signal">{copy.addSignal}</a>}</div></header>
-    <section className="thesis"><p className="eyebrow">{copy.snapshot} · {payload.generated_at?.slice(0, 10)}</p><p><b>{copy.thesis}</b> {copy.thesisMore}</p></section>
-    {isSkills ? <section className="skills-intro"><p className="page-no">{copy.snapshot}</p><h1>{copy.skillsTitle}</h1><p>{copy.skillsBody}</p></section> : <Book records={records} copy={copy} locale={locale} onSubject={useSubject} onBrowse={scrollToIndex} />}
-    {!isSkills ? <section className="try-it"><div className="try-head"><div><p className="eyebrow">{copy.tryEyebrow}</p><h2>{copy.tryTitle}</h2></div><p>{copy.tryBody}</p></div><div className="demo-rail" tabIndex="0" aria-label="Projects with public websites">{records.filter((record) => safeHomepage(record)).sort((a, b) => (b.metrics?.stars || 0) - (a.metrics?.stars || 0)).slice(0, 12).map((record) => <a href={safeHomepage(record)} target="_blank" rel="noreferrer" className={`demo-card t-${primarySubject(record)[1]}`} key={record.github_repo_id}><div className="demo-art"><Visual record={record} copy={copy} /></div><div><span className="live"><i />LIVE</span><span className="plate-owner">{ownerName(record)} /</span><strong>{record.name}</strong><p>{text(record.description, "—")}</p></div></a>)}<button className="see-all" onClick={scrollToIndex}>{copy.seeAll}</button></div></section> : null}
-    <section className="index" ref={indexRef} id="index"><aside className="filter-sidebar"><input className="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={isSkills ? copy.skillsSearch : copy.search} />{isSkills ? <><div className="filter-group"><h2>{copy.skillSource}</h2><button aria-pressed="true">{copy.all}<em>{skillRecords.length}</em></button></div><div className="filter-group"><h2>{copy.skillResources}</h2><button aria-pressed="false">scripts <em>{skillRecords.filter((item) => item.resource_hints?.scripts).length}</em></button><button aria-pressed="false">references <em>{skillRecords.filter((item) => item.resource_hints?.references).length}</em></button></div></> : <>{filterGroups.map(([title, options], groupIndex) => <div className="filter-group" key={title}><h2>{title}</h2>{options.map(([value, label, count]) => <button key={value} aria-pressed={groupIndex === 0 ? show === value : kind === value} onClick={() => groupIndex === 0 ? setShow(value) : setKind(kind === value ? "" : value)}>{label}<em>{count}</em></button>)}</div>)}<div className="filter-group"><h2>{copy.subject}</h2>{SUBJECTS.map(([id, tax, en, zh]) => <button className={`filter-subject t-${tax}`} aria-pressed={subject === id} key={id} onClick={() => setSubject(subject === id ? "" : id)}>{locale === "zh" ? zh : en}<em>{allSubjects[id]}</em></button>)}</div><div className="filter-group"><h2>{copy.language}</h2><select value={language} onChange={(event) => setLanguage(event.target.value)}><option value="">{copy.all}</option>{languages.map((item) => <option value={item} key={item}>{item}</option>)}</select></div></>}<button className="reset" onClick={reset}>{copy.clear}</button></aside><section className="index-results"><div className="index-head"><div><p className="eyebrow">{isSkills ? copy.skillIndex : copy.index}</p><h2>{filtered.length} {isSkills ? copy.skillsInView : copy.inView}</h2></div><p>{isSkills ? copy.skillsBody : copy.generatedHint}</p></div><div className="plate-grid">{filtered.map((record) => isSkills ? <SkillCard record={record} copy={copy} locale={locale} key={record.skill_key} /> : <ProjectCard record={record} copy={copy} locale={locale} key={`${record.github_repo_id || "lead"}:${record.full_name || record.name || "unknown"}`} />)}</div>{filtered.length === 0 ? <div className="empty"><h2>{copy.noResults}</h2><button className="button button-ghost" onClick={reset}>{copy.drop}</button></div> : null}</section></section>
-    {!isSkills ? <SuggestionForm copy={copy} /> : null}<footer><span>EduOS Radar — a project by edu-ai-builders</span><span>{copy.generatedHint}</span><Link href="/support">{copy.support} →</Link></footer>
+  const reset = () => { setQuery(""); setShow("all"); setKind(""); setSubject(""); setLanguage(""); setSort("stars"); };
+  const filterGroups = [[copy.showMe, [["all", copy.everything, records.length], ["live", copy.live, records.filter((record) => safeHomepage(record)).length], ["picks", copy.picks, records.filter((record) => record.gold_seed).length]]], [copy.projectShape, [["repo", copy.repositories, payload.counts?.entity_kind?.repo || 0], ["dataset", copy.datasets, payload.counts?.entity_kind?.dataset || 0], ["benchmark", copy.benchmarks, payload.counts?.entity_kind?.benchmark || 0], ["awesome_index", copy.awesomeLists, payload.counts?.entity_kind?.awesome_index || 0]]]];
+  return <main className="radar"><header className="masthead"><div className="masthead-top"><Link href="/" className="wordmark">EDUOS <span>Radar</span></Link><nav className="catalog-nav" aria-label="Catalog"><button aria-pressed={!isSkills} onClick={() => { setCatalog("github"); reset(); }}>{copy.github}</button><button aria-pressed={isSkills} onClick={() => { setCatalog("skills"); reset(); }}>{copy.skills}</button></nav><div className="masthead-tools"><span className="sync"><i />{copy.sync} {payload.generated_at?.slice(0, 10)}</span><div className="language-switch"><button className={locale === "en" ? "active" : ""} onClick={() => switchLocale("en")}>EN</button><button className={locale === "zh" ? "active" : ""} onClick={() => switchLocale("zh")}>中文</button></div>{supportUrl ? <a className="support-link" href={supportUrl} target="_blank" rel="noreferrer">{copy.support} ↗</a> : <a className="support-link" href="#add-signal">{copy.submitProject} ↓</a>}</div></div><div className="masthead-line"><p>{copy.thesis}</p><p>{copy.thesisMore}</p></div></header>
+    {isSkills ? <section className="skills-intro"><p className="eyebrow">{copy.snapshot}</p><h1>{copy.skillsTitle}</h1><p>{copy.skillsBody}</p></section> : <DirectoryIntro records={records} copy={copy} locale={locale} onSubject={useSubject} onBrowse={scrollToIndex} />}
+    <section className="index" ref={indexRef} id="index"><aside className="filter-sidebar"><label className="visually-hidden" htmlFor="radar-search">{isSkills ? copy.skillsSearch : copy.search}</label><input id="radar-search" className="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={isSkills ? copy.skillsSearch : copy.search} />{isSkills ? <div className="filter-note"><p>{copy.skillSource}</p><span>{skillRecords.length} {copy.skillsInView}</span></div> : <>{filterGroups.map(([title, options], groupIndex) => <div className="filter-group" key={title}><h2>{title}</h2>{options.map(([value, label, count]) => <button key={value} aria-pressed={groupIndex === 0 ? show === value : kind === value} onClick={() => groupIndex === 0 ? setShow(value) : setKind(kind === value ? "" : value)}>{label}<span>{count}</span></button>)}</div>)}<div className="filter-group"><h2>{copy.subject}</h2>{SUBJECTS.map(([id, tax, en, zh]) => <button className={`filter-subject t-${tax}`} aria-pressed={subject === id} key={id} onClick={() => setSubject(subject === id ? "" : id)}><i aria-hidden="true" />{locale === "zh" ? zh : en}<span>{allSubjects[id]}</span></button>)}</div><div className="filter-group"><h2>{copy.language}</h2><select value={language} onChange={(event) => setLanguage(event.target.value)}><option value="">{copy.all}</option>{languages.map((item) => <option value={item} key={item}>{item}</option>)}</select></div></>}<button className="reset" onClick={reset}>{copy.clear}</button></aside><section className="index-results"><div className="index-head"><div><p className="eyebrow">{isSkills ? copy.skillIndex : copy.index}</p><h2 aria-live="polite">{filtered.length} {isSkills ? copy.skillsInView : copy.inView}</h2></div><p>{isSkills ? copy.skillsBody : copy.resultsHint}</p>{!isSkills ? <label className="sort-control">{copy.sortBy}<select value={sort} onChange={(event) => setSort(event.target.value)}><option value="stars">{copy.sortStars}</option><option value="added">{copy.sortAdded}</option><option value="updated">{copy.sortGithubUpdated}</option><option value="synced">{copy.sortSynced}</option></select></label> : null}</div><div className="project-list">{filtered.map((record) => isSkills ? <SkillRow record={record} copy={copy} locale={locale} key={record.skill_key} /> : <ProjectRow record={record} copy={copy} locale={locale} key={`${record.github_repo_id || "lead"}:${record.full_name || record.name || "unknown"}`} />)}</div>{filtered.length === 0 ? <div className="empty"><h2>{copy.noResults}</h2><button className="text-link" onClick={reset}>{copy.drop}</button></div> : null}</section></section>
+    {!isSkills ? <SuggestionForm copy={copy} /> : null}<footer className="footer-mast"><span>EduOS Radar — a project by edu-ai-builders</span><span>{copy.footerMetadata}</span><Link href="/support">{copy.support} →</Link></footer>
   </main>;
 }

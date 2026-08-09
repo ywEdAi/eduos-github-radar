@@ -1,0 +1,8 @@
+{
+  "scanned_at": "2026-08-09",
+  "framework": "Next.js app router",
+  "font_stack": "Existing CSS type stack replaced for this editorial directory redesign",
+  "palette": "Existing warm custom properties replaced by locked Newsprint tokens",
+  "motion": "motion-cut; no animation library detected",
+  "spacing": "Responsive custom-property scale introduced with the redesign"
+}
