@@ -1,4 +1,4 @@
-/* Hallmark · macrostructure: Catalogue · genre: editorial · theme: custom · enrichment: none · nav: N9 Edge-aligned minimal · footer: Ft2 Inline rule
+/* Hallmark · macrostructure: Catalogue · genre: editorial · theme: custom · enrichment: none · nav: N1a Wordmark + controls · footer: Ft2 Inline rule
  * vibe: warm paper, muted colour, useful catalogue · axes: light / geometric-sans / cool · context: explicit · pre-emit critique: P5 H5 E5 S5 R5 V5
  */
 @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@10..48,75..100,400;10..48,75..100,500;10..48,75..100,600;10..48,75..100,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
@@ -133,7 +133,7 @@ a { color: inherit; }
 .project-card .project-owner { margin-top: var(--space-4); }.project-card .project-main h3 { font-size: clamp(1.55rem, 2.4vw, 2.15rem); }.project-card .project-description { display: -webkit-box; min-height: calc(var(--text-sm) * var(--leading-copy) * 3); overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
 .subject-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: auto; padding-top: var(--space-4); }.subject-chip { padding: var(--space-1) var(--space-2); border-radius: var(--radius-sm); color: var(--subject-color); background: color-mix(in oklch, var(--subject-color) 13%, var(--color-paper)); font-size: var(--text-2xs); font-weight: 700; line-height: 1.3; }
 .project-card .project-facts { margin: 0; padding: var(--space-4) var(--space-5); border-top: var(--rule); background: var(--color-paper-2); }.project-card .project-facts dd { font-size: var(--text-sm); }.project-card .project-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); padding: var(--space-4) var(--space-5); border-top: var(--rule); }
-@media (hover: hover) { .project-card:hover { background: color-mix(in oklch, var(--subject-color) 8%, var(--color-paper)); }.project-card:hover .project-main h3 a { color: var(--subject-color); } }
+@media (hover: hover) { .project-card:hover { background: color-mix(in oklch, var(--subject-color) 8%, var(--color-paper)); } }
 .project-card:focus-within { background: color-mix(in oklch, var(--subject-color) 8%, var(--color-paper)); }
 .project-list.list { margin-top: var(--space-3); }.project-list.list .project-row { border-top-color: var(--color-rule); }
 .footer-mast { margin-top: var(--space-6); padding-top: var(--space-4); padding-bottom: var(--space-5); }
