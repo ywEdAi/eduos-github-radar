@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { COPY, initialLocale } from "./i18n";
 
 const SUBJECTS = [
@@ -131,7 +132,20 @@ function matchedSubjects(record) { const haystack = repositoryText(record); retu
 function primarySubject(record) { return matchedSubjects(record)[0] || SUBJECTS.find(([id]) => id === "learning-systems"); }
 function safeHomepage(record) { try { const url = new URL(record.homepage || ""); return ["http:", "https:"].includes(url.protocol) && !url.username && !url.password ? url.href : ""; } catch { return ""; } }
 function ownerName(record) { return record.owner?.login || String(record.full_name || "").split("/")[0] || "GitHub"; }
+function ownerAvatarUrl(record) {
+  const login = ownerName(record);
+  return /^[a-z0-9-]+$/i.test(login) ? `https://github.com/${encodeURIComponent(login)}.png?size=96` : "";
+}
 function kindLabel(kind, copy) { return { repo: copy.repository, dataset: copy.dataset, benchmark: copy.benchmark, awesome_index: copy.awesomeIndex }[kind] || copy.repository; }
+
+function OwnerAvatar({ record, label }) {
+  const [failed, setFailed] = useState(false);
+  const url = ownerAvatarUrl(record);
+  if (!url || failed) return null;
+  return <a className="owner-avatar" href={record.owner?.html_url || `https://github.com/${ownerName(record)}`} target="_blank" rel="noreferrer" aria-label={label}>
+    <img src={url} alt="" onError={() => setFailed(true)} />
+  </a>;
+}
 
 function SubjectMark({ record, locale, card = false }) {
   const subjects = matchedSubjects(record); const visibleSubjects = subjects.length ? subjects.slice(0, 2) : [primarySubject(record)];
@@ -145,6 +159,7 @@ function ProjectRow({ record, copy, locale, view }) {
   return <article className={`${view === "cards" ? "project-card" : "project-row"} t-${tax}`}>
     {view === "cards" ? <div className="card-spectrum" aria-hidden="true"><i className={`t-${tax}`} /><i className={secondary ? `t-${secondary}` : "t-learn"} /><i className="t-learn" /></div> : null}
     <div className="project-main">
+      {view === "cards" ? <OwnerAvatar record={record} label={`${ownerName(record)} on GitHub`} /> : null}
       <p className="project-kicker"><span>{kindLabel(record.entity_kind, copy)}</span><span>{record.verification_status === "verified" ? copy.verified : copy.awaiting}</span></p>
       <p className="project-owner">{ownerName(record)} /</p>
       <h3><a href={record.html_url} target="_blank" rel="noreferrer">{record.name || record.full_name}</a></h3>
@@ -167,9 +182,11 @@ function ProjectRow({ record, copy, locale, view }) {
 
 function SkillRow({ record, copy, locale, view }) {
   const source = record.source_repository || {};
+  const owner = source.full_name ? { owner: { login: source.full_name.split("/")[0], html_url: source.html_url }, full_name: source.full_name } : null;
   return <article className={`${view === "cards" ? "project-card" : "project-row"} skill-row t-learn`}>
     {view === "cards" ? <div className="card-spectrum" aria-hidden="true"><i className="t-learn" /><i className="t-cs" /><i className="t-teach" /></div> : null}
     <div className="project-main">
+      {view === "cards" && owner ? <OwnerAvatar record={owner} label={`${ownerName(owner)} on GitHub`} /> : null}
       <p className="project-kicker"><span>{copy.skill}</span><span>{copy.source}</span></p>
       <p className="project-owner">{source.full_name || copy.skillSource} /</p>
       <h3><a href={record.manifest_url} target="_blank" rel="noreferrer">{record.skill_name}</a></h3>
@@ -196,13 +213,19 @@ function SuggestionForm({ copy }) {
 }
 
 function DirectoryIntro({ records, copy, locale, onSubject, onBrowse }) {
+  const reduceMotion = useReducedMotion();
   const counts = useMemo(() => Object.fromEntries(SUBJECTS.map(([id]) => [id, records.filter((record) => matchedSubjects(record).some(([subjectId]) => subjectId === id)).length])), [records]);
   const verified = records.filter((record) => record.verification_status === "verified").length;
   const live = records.filter((record) => safeHomepage(record)).length;
+  const reveal = (delay) => reduceMotion ? {} : {
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.42, delay, ease: [0.16, 1, 0.3, 1] },
+  };
   return <section className="directory-intro">
-    <div className="intro-copy"><p className="eyebrow">{copy.snapshot}</p><h1>{copy.directoryTitle}</h1><p>{copy.directoryCopy}</p><div className="intro-actions"><button className="text-link" onClick={onBrowse}>{copy.browseIndex} ↓</button><a className="text-link" href="#add-signal">{copy.submitProject} ↓</a></div></div>
-    <dl className="directory-stats"><div><dd>{records.length}</dd><dt>{copy.projects}</dt></div><div><dd>{live}</dd><dt>{copy.liveDemos}</dt></div><div><dd>{verified}</dd><dt>{copy.verified}</dt></div></dl>
-    <div className="subject-index"><p>{copy.subjectIndex}</p><nav aria-label={copy.subjectIndex}>{SUBJECTS.map(([id, tax, en, zh]) => <button key={id} className={`subject-choice t-${tax}`} onClick={() => onSubject(id)}><span aria-hidden="true" />{locale === "zh" ? zh : en}<b>{counts[id]}</b></button>)}</nav><small>{copy.directoryNote}</small></div>
+    <motion.div className="intro-copy" {...reveal(0)}><p className="eyebrow">{copy.snapshot}</p><h1>{copy.directoryTitle}</h1><p>{copy.directoryCopy}</p><div className="intro-actions"><button className="text-link" onClick={onBrowse}>{copy.browseIndex} ↓</button><a className="text-link" href="#add-signal">{copy.submitProject} ↓</a></div></motion.div>
+    <motion.dl className="directory-stats" {...reveal(0.08)}><div><dd>{records.length}</dd><dt>{copy.projects}</dt></div><div><dd>{live}</dd><dt>{copy.liveDemos}</dt></div><div><dd>{verified}</dd><dt>{copy.verified}</dt></div></motion.dl>
+    <motion.div className="subject-index" {...reveal(0.15)}><p>{copy.subjectIndex}</p><nav aria-label={copy.subjectIndex}>{SUBJECTS.map(([id, tax, en, zh]) => <button key={id} className={`subject-choice t-${tax}`} onClick={() => onSubject(id)}><span aria-hidden="true" />{locale === "zh" ? zh : en}<b>{counts[id]}</b></button>)}</nav><small>{copy.directoryNote}</small></motion.div>
   </section>;
 }
 

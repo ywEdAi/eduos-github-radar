@@ -3,6 +3,6 @@
   "framework": "Next.js app router",
   "font_stack": "Existing CSS type stack replaced for this editorial directory redesign",
   "palette": "Existing warm custom properties replaced by locked Newsprint tokens",
-  "motion": "motion-cut; no animation library detected",
+  "motion": "framer-motion for a single hero entrance; reduced-motion respected",
   "spacing": "Responsive custom-property scale introduced with the redesign"
 }
