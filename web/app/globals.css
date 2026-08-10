@@ -113,7 +113,7 @@ a { color: inherit; }
 .directory-intro { grid-template-columns: minmax(0, 0.98fr) minmax(25rem, 0.82fr); align-items: stretch; gap: var(--space-6); padding-top: clamp(2.5rem, 5vw, 4.5rem); padding-bottom: var(--space-6); }
 .intro-copy { align-self: center; }
 .intro-copy h1, .skills-intro h1 { max-width: 16ch; font-size: clamp(2rem, 3.8vw, 3.65rem); letter-spacing: -0.05em; }
-.intro-copy h1:lang(zh) { max-width: 14ch; font-size: clamp(1.85rem, 3.05vw, 3.1rem); letter-spacing: -0.04em; line-height: 1.18; }
+.intro-copy h1:lang(zh) { max-width: 17ch; font-size: clamp(1.8rem, 2.9vw, 3rem); letter-spacing: -0.04em; line-height: 1.16; }
 .intro-copy > p:not(.eyebrow):lang(zh) { max-width: 44ch; line-height: 1.6; }
 .intro-copy > p:not(.eyebrow), .skills-intro > p:last-child { margin-top: var(--space-4); font-size: var(--text-base); }
 .intro-actions { margin-top: var(--space-5); }
