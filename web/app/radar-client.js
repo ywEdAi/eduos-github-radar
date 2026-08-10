@@ -132,19 +132,16 @@ function matchedSubjects(record) { const haystack = repositoryText(record); retu
 function primarySubject(record) { return matchedSubjects(record)[0] || SUBJECTS.find(([id]) => id === "learning-systems"); }
 function safeHomepage(record) { try { const url = new URL(record.homepage || ""); return ["http:", "https:"].includes(url.protocol) && !url.username && !url.password ? url.href : ""; } catch { return ""; } }
 function ownerName(record) { return record.owner?.login || String(record.full_name || "").split("/")[0] || "GitHub"; }
-function ownerAvatarUrl(record) {
-  const login = ownerName(record);
-  return /^[a-z0-9-]+$/i.test(login) ? `https://github.com/${encodeURIComponent(login)}.png?size=96` : "";
-}
 function kindLabel(kind, copy) { return { repo: copy.repository, dataset: copy.dataset, benchmark: copy.benchmark, awesome_index: copy.awesomeIndex }[kind] || copy.repository; }
 
-function OwnerAvatar({ record, label }) {
-  const [failed, setFailed] = useState(false);
-  const url = ownerAvatarUrl(record);
-  if (!url || failed) return null;
-  return <a className="owner-avatar" href={record.owner?.html_url || `https://github.com/${ownerName(record)}`} target="_blank" rel="noreferrer" aria-label={label}>
-    <img src={url} alt="" onError={() => setFailed(true)} />
-  </a>;
+function languageGlyph(language) {
+  const glyphs = { TypeScript: "TS", JavaScript: "JS", Python: "PY", Java: "JV", "C++": "C+", "C#": "C#", "Jupyter Notebook": "NB", HTML: "HT", CSS: "CS", Ruby: "RB", Go: "GO", Rust: "RS", R: "R" };
+  return glyphs[language] || String(language || "").slice(0, 2).toUpperCase();
+}
+
+function LanguageMark({ language }) {
+  if (!language) return null;
+  return <span className="language-mark" title={language} aria-label={`Primary language: ${language}`}>{languageGlyph(language)}</span>;
 }
 
 function SubjectMark({ record, locale, card = false }) {
@@ -159,7 +156,7 @@ function ProjectRow({ record, copy, locale, view }) {
   return <article className={`${view === "cards" ? "project-card" : "project-row"} t-${tax}`}>
     {view === "cards" ? <div className="card-spectrum" aria-hidden="true"><i className={`t-${tax}`} /><i className={secondary ? `t-${secondary}` : "t-learn"} /><i className="t-learn" /></div> : null}
     <div className="project-main">
-      {view === "cards" ? <OwnerAvatar record={record} label={`${ownerName(record)} on GitHub`} /> : null}
+      {view === "cards" ? <LanguageMark language={record.primary_language} /> : null}
       <p className="project-kicker"><span>{kindLabel(record.entity_kind, copy)}</span><span>{record.verification_status === "verified" ? copy.verified : copy.awaiting}</span></p>
       <p className="project-owner">{ownerName(record)} /</p>
       <h3><a href={record.html_url} target="_blank" rel="noreferrer">{record.name || record.full_name}</a></h3>
@@ -182,11 +179,10 @@ function ProjectRow({ record, copy, locale, view }) {
 
 function SkillRow({ record, copy, locale, view }) {
   const source = record.source_repository || {};
-  const owner = source.full_name ? { owner: { login: source.full_name.split("/")[0], html_url: source.html_url }, full_name: source.full_name } : null;
   return <article className={`${view === "cards" ? "project-card" : "project-row"} skill-row t-learn`}>
     {view === "cards" ? <div className="card-spectrum" aria-hidden="true"><i className="t-learn" /><i className="t-cs" /><i className="t-teach" /></div> : null}
     <div className="project-main">
-      {view === "cards" && owner ? <OwnerAvatar record={owner} label={`${ownerName(owner)} on GitHub`} /> : null}
+      {view === "cards" ? <LanguageMark language={source.primary_language} /> : null}
       <p className="project-kicker"><span>{copy.skill}</span><span>{copy.source}</span></p>
       <p className="project-owner">{source.full_name || copy.skillSource} /</p>
       <h3><a href={record.manifest_url} target="_blank" rel="noreferrer">{record.skill_name}</a></h3>
@@ -222,9 +218,18 @@ function DirectoryIntro({ records, copy, locale, onSubject, onBrowse }) {
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.42, delay, ease: [0.16, 1, 0.3, 1] },
   };
+  const signalAnimation = (index) => reduceMotion ? {} : {
+    animate: { opacity: [0.62, 1, 0.62], scale: [1, 1.12, 1] },
+    transition: { duration: 2.4, delay: index * 0.14, repeat: Infinity, ease: "easeInOut" },
+  };
   return <section className="directory-intro">
     <motion.div className="intro-copy" {...reveal(0)}><p className="eyebrow">{copy.snapshot}</p><h1>{copy.directoryTitle}</h1><p>{copy.directoryCopy}</p><div className="intro-actions"><button className="text-link" onClick={onBrowse}>{copy.browseIndex} ↓</button><a className="text-link" href="#add-signal">{copy.submitProject} ↓</a></div></motion.div>
-    <motion.dl className="directory-stats" {...reveal(0.08)}><div><dd>{records.length}</dd><dt>{copy.projects}</dt></div><div><dd>{live}</dd><dt>{copy.liveDemos}</dt></div><div><dd>{verified}</dd><dt>{copy.verified}</dt></div></motion.dl>
+    <motion.aside className="hero-signal" {...reveal(0.08)} aria-label={copy.subjectIndex}>
+      <motion.i className="signal-sweep" aria-hidden="true" animate={reduceMotion ? undefined : { x: ["-120%", "220%"] }} transition={reduceMotion ? undefined : { duration: 4.5, repeat: Infinity, ease: "linear", repeatDelay: 1.8 }} />
+      <div className="hero-signal-head"><p className="eyebrow">{copy.index}</p><span><i aria-hidden="true" />{copy.verified}</span></div>
+      <div className="signal-grid">{SUBJECTS.map(([id, tax, en, zh], index) => <div className={`signal-node t-${tax}`} key={id}><motion.i aria-hidden="true" {...signalAnimation(index)} /><span>{locale === "zh" ? zh : en}</span><b>{counts[id]}</b></div>)}</div>
+      <dl className="directory-stats"><div><dd>{records.length}</dd><dt>{copy.projects}</dt></div><div><dd>{live}</dd><dt>{copy.liveDemos}</dt></div><div><dd>{verified}</dd><dt>{copy.verified}</dt></div></dl>
+    </motion.aside>
     <motion.div className="subject-index" {...reveal(0.15)}><p>{copy.subjectIndex}</p><nav aria-label={copy.subjectIndex}>{SUBJECTS.map(([id, tax, en, zh]) => <button key={id} className={`subject-choice t-${tax}`} onClick={() => onSubject(id)}><span aria-hidden="true" />{locale === "zh" ? zh : en}<b>{counts[id]}</b></button>)}</nav><small>{copy.directoryNote}</small></motion.div>
   </section>;
 }
