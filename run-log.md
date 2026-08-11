@@ -107,3 +107,27 @@
   links use GitHub URLs, and no client console warnings/errors occurred. No
   package installation, deployment, paid service, database, model backend, or
   external Skill execution was authorized or performed.
+
+## 2026-08-10 — education datasets and benchmarks refresh
+
+- Expanded the `dataset-benchmark` discovery matrix with eight bounded English
+  and Chinese query routes: knowledge tracing, learning analytics, education
+  dialogue, assessment/exam data, education-LLM benchmarks, Chinese education
+  datasets, Chinese educational evaluation, and examination benchmarks.
+- Added exact paper/repository leads for EduBench, Edu-Values, M3KE, GAOKAO-MM,
+  GAOKAO-Bench, ScratchMath, Education Dialogue Dataset, EduData, and
+  MathTutorBench. Seven of the first eight and MathTutorBench were verified by
+  GitHub REST metadata; the paper-linked `zhangpeii/Edu-Values` URL returned
+  GitHub 404 and remains an explicit error record rather than a guessed match.
+- Completed 10 bounded GitHub Search requests (one page each, sorted by recent
+  update) and deduplicated all findings by numeric GitHub repository ID. The
+  registry now has 3,536 records: 631 datasets and 321 benchmarks; 3,513
+  records are API-verified.
+- Fixed `seed` reconciliation so a verified exact repository absorbs its lead
+  provenance without re-creating a duplicate `lead:` placeholder on later runs.
+  The refresh removed eight stale placeholders while preserving first-seen,
+  notes, and provenance.
+- Generated `reports/data-quality-2026-08-10-dataset-benchmark.md` (0
+  structural errors), rebuilt the allowlisted public snapshot, and copied it to
+  the React UI. The public catalog now has 1,011 entries, including 99 datasets
+  and 28 benchmarks. No source code was cloned, downloaded, or analyzed.

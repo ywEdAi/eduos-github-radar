@@ -1,0 +1,18 @@
+[
+  {
+    "date": "2026-08-09",
+    "macrostructure": "Catalogue",
+    "theme": "custom",
+    "theme_axes": "light / geometric-sans / cool",
+    "vibe": "warm paper, muted colour, useful catalogue",
+    "enrichment": "none",
+    "brief": "EduOS GitHub Radar colourful metadata cards with a compact list alternative"
+  },
+  {
+    "date": "2026-08-09",
+    "macrostructure": "Index-First",
+    "theme": "Newsprint",
+    "enrichment": "none",
+    "brief": "EduOS GitHub Radar text-first project directory without thumbnails"
+  }
+]

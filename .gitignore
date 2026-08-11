@@ -5,3 +5,5 @@
 state/http-cache.json
 __pycache__/
 *.pyc
+.vercel
+.env*
