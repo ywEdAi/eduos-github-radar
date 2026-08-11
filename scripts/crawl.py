@@ -449,15 +449,41 @@ def make_provenance(
 
 
 def command_seed(args, registry: Registry, client: GitHubClient) -> dict:
-    seeds = read_json(Path(args.seeds))
+    all_seeds = read_json(Path(args.seeds))
+    seeds = all_seeds
     if args.only:
         requested = set(args.only.split(","))
         seeds = [seed for seed in seeds if seed["lead_id"] in requested]
     if args.limit is not None:
         seeds = seeds[: args.limit]
     now = utc_now()
-    for seed in read_json(Path(args.seeds)):
-        registry.ensure_lead(seed, now)
+    verified_by_full_name = {
+        (record.get("full_name") or "").casefold(): record
+        for record in registry.records.values()
+        if record.get("verification_status") == "verified" and record.get("full_name")
+    }
+    for seed in all_seeds:
+        full_name = (seed.get("full_name") or "").casefold()
+        existing = verified_by_full_name.get(full_name) if full_name else None
+        if existing is None:
+            registry.ensure_lead(seed, now)
+            continue
+        lead_key = f"lead:{seed['lead_id']}"
+        placeholder = registry.records.pop(lead_key, None)
+        provenance = make_provenance(
+            source=seed["source"],
+            source_ref=seed.get("source_ref") or seed["label"],
+            lead_id=seed["lead_id"],
+            first_seen=(placeholder or existing).get("first_seen", now),
+            last_seen=now,
+        )
+        existing["provenance"] = append_unique(existing.get("provenance", []), provenance)
+        existing["first_seen"] = min(
+            existing.get("first_seen", now), (placeholder or existing).get("first_seen", now)
+        )
+        existing["last_seen"] = now
+        existing["gold_seed"] = bool(existing.get("gold_seed") or seed.get("gold_seed"))
+        existing["notes"] = existing.get("notes") or seed.get("notes")
     registry.save()
     verified = 0
     unresolved = 0

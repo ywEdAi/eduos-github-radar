@@ -1,0 +1,19 @@
+{
+  "api_requests": 22,
+  "api_version": "2026-03-10",
+  "authenticated": false,
+  "command": "seed",
+  "errors": [
+    {
+      "error": "GitHub API 404 for https://api.github.com/repos/zhangpeii/Edu-Values: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}",
+      "lead_id": "edu-values-arxiv-2409-12739"
+    }
+  ],
+  "finished_at": "2026-08-10T22:38:35Z",
+  "not_modified_responses": 0,
+  "registry_records": 3203,
+  "selected": 8,
+  "started_at": "2026-08-10T22:38:28Z",
+  "unresolved": 0,
+  "verified": 7
+}

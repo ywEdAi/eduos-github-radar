@@ -166,5 +166,61 @@
     "query": "benchmark education in:name,description,readme stars:>=5 archived:false",
     "kind_hint": "benchmark",
     "enabled": true
+  },
+  {
+    "id": "dataset-knowledge-tracing",
+    "family": "dataset-benchmark",
+    "query": "\"knowledge tracing\" OR \"student performance\" in:name,description,readme stars:>=3 archived:false",
+    "kind_hint": "dataset",
+    "enabled": true
+  },
+  {
+    "id": "dataset-learning-analytics",
+    "family": "dataset-benchmark",
+    "query": "\"learning analytics\" OR \"educational data mining\" in:name,description,readme stars:>=3 archived:false",
+    "kind_hint": "dataset",
+    "enabled": true
+  },
+  {
+    "id": "dataset-education-dialogue",
+    "family": "dataset-benchmark",
+    "query": "\"education dialogue\" OR \"teacher student\" in:name,description,readme stars:>=1 archived:false",
+    "kind_hint": "dataset",
+    "enabled": true
+  },
+  {
+    "id": "dataset-assessment-exam",
+    "family": "dataset-benchmark",
+    "query": "\"exam dataset\" OR \"question dataset\" OR \"assessment dataset\" in:name,description,readme stars:>=5 archived:false",
+    "kind_hint": "dataset",
+    "enabled": true
+  },
+  {
+    "id": "benchmark-education-llm",
+    "family": "dataset-benchmark",
+    "query": "\"education benchmark\" OR \"educational benchmark\" in:name,description,readme stars:>=1 archived:false",
+    "kind_hint": "benchmark",
+    "enabled": true
+  },
+  {
+    "id": "dataset-education-zh",
+    "family": "dataset-benchmark",
+    "query": "教育 数据集 OR 教学 数据集 OR 学习 数据集 in:name,description,readme stars:>=1 archived:false",
+    "kind_hint": "dataset",
+    "enabled": true
+  },
+  {
+    "id": "benchmark-education-zh",
+    "family": "dataset-benchmark",
+    "query": "教育 基准 OR 教学 基准 OR 教育 评测 OR 教育 benchmark in:name,description,readme stars:>=1 archived:false",
+    "kind_hint": "benchmark",
+    "enabled": true
+  },
+  {
+    "id": "benchmark-exam-zh",
+    "family": "dataset-benchmark",
+    "query": "高考 benchmark OR 高考 数据集 OR 考试 评测 in:name,description,readme stars:>=1 archived:false",
+    "kind_hint": "benchmark",
+    "enabled": true
   }
 ]
