@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "EduOS GitHub Radar",
-  description: "Open-source education and future-capability projects, refreshed from a curated GitHub metadata registry.",
+  title: "EduOS Radar",
+  description: "A bilingual directory of open education apps, skills, datasets and benchmarks, built from source-attributed public metadata.",
 };
 
 export default function RootLayout({ children }) {
