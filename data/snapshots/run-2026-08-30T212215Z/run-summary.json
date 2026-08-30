@@ -1,0 +1,19 @@
+{
+  "api_requests": 148,
+  "api_version": "2026-03-10",
+  "authenticated": true,
+  "command": "refresh",
+  "errors": [
+    {
+      "error": "GitHub API 404 for https://api.github.com/repos/zackmillertawp1396/ai-vocab-builder-2026: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest\",\"status\":\"404\"}",
+      "full_name": "zackmillertawp1396/ai-vocab-builder-2026"
+    }
+  ],
+  "finished_at": "2026-08-30T21:22:15Z",
+  "not_modified": 0,
+  "not_modified_responses": 0,
+  "registry_records": 3536,
+  "selected": 50,
+  "started_at": "2026-08-30T21:21:22Z",
+  "updated": 49
+}
