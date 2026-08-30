@@ -4,7 +4,6 @@
 
 <p align="center">
   <a href="https://edu-ai-builders-site.vercel.app/directory">Open in Edu AI Builders</a>
-  · <a href="https://eduos-github-radar.vercel.app">Open standalone</a>
   · <a href="#what-you-can-browse">Browse the collections</a>
   · <a href="#run-a-refresh">Run a refresh</a>
   · <a href="#trust-boundary">Read the boundary</a>
@@ -28,10 +27,10 @@ project is safe or pedagogically effective.
   [Edu AI Builders directory](https://edu-ai-builders-site.vercel.app/directory),
   which embeds the standalone deployment rather than maintaining a second copy
   of the registry.
-- [eduos-github-radar.vercel.app](https://eduos-github-radar.vercel.app) remains
-  the independently deployable presentation surface. Updating this repository's
-  generated snapshots updates both the standalone view and the directory embed
-  after deployment.
+- The independently deployed Radar service is mounted behind the Builder Site's
+  `/directory` path as a Next.js multi-zone. It is an implementation boundary,
+  not a second visitor-facing domain. Updating this repository's generated
+  snapshots updates the unified directory after deployment.
 
 ## What you can browse
 
@@ -58,8 +57,7 @@ top-level product category.**
 - an optional project-suggestion form. Private learning goals never enter the
   public catalog.
 
-Open the directory through **[Edu AI Builders](https://edu-ai-builders-site.vercel.app/directory)**
-or use the **[standalone Radar](https://eduos-github-radar.vercel.app)**.
+Open the directory through **[Edu AI Builders](https://edu-ai-builders-site.vercel.app/directory)**.
 
 ## Trust boundary
 

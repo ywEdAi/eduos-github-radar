@@ -27,6 +27,12 @@ Create a Vercel project with `web` as its Root Directory. Add
 `NEXT_PUBLIC_BUY_ME_A_COFFEE_URL` only after the creator page exists. The first
 deployment needs no database and is a read-only public snapshot.
 
+The app is mounted at `/directory` through `basePath`. The Edu AI Builders site
+is the canonical public entry point and proxies `/directory` plus all nested
+assets and API routes to this deployment as a Next.js multi-zone. The browser
+therefore stays on the Builder Site domain; the standalone deployment is an
+implementation boundary, not a second visitor-facing destination.
+
 ## Curated project suggestions
 
 The home page includes a bilingual suggestion form. It accepts a GitHub

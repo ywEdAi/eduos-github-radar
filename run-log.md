@@ -161,3 +161,10 @@
 - Rebuilt and synced both allowlisted snapshots. Project and Skills validation
   each reported 0 structural problems. The Radar production build and the Staff
   website lint/production build both passed.
+- Replaced the Staff directory's cross-domain iframe contract with a Next.js
+  multi-zone contract. Radar now builds with `/directory` as its base path, and
+  the Staff site proxies `/directory` plus nested assets and API routes while
+  preserving the Builder Site domain. Local end-to-end checks returned 200 for
+  the page and a proxied `/_next` asset; the suggestion API was reachable at
+  `/directory/api/suggestions` and returned the expected database-not-configured
+  response.
