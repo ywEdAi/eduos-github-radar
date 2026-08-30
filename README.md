@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://eduos-github-radar.vercel.app">Open the Radar</a>
+  <a href="https://edu-ai-builders-site.vercel.app/directory">Open in Edu AI Builders</a>
   · <a href="#what-you-can-browse">Browse the collections</a>
   · <a href="#run-a-refresh">Run a refresh</a>
   · <a href="#trust-boundary">Read the boundary</a>
@@ -18,6 +18,19 @@ adapting or studying before they invest time in a repository.
 The public site is a read-only view of a compact metadata registry. It is not a
 code host, a package installer, a model evaluation, or a recommendation that a
 project is safe or pedagogically effective.
+
+## Where Radar lives
+
+- This repository is the source of truth for collection code, canonical
+  registries, generated public snapshots, and the standalone Radar frontend.
+- The primary visitor entry point is the
+  [Edu AI Builders directory](https://edu-ai-builders-site.vercel.app/directory),
+  which embeds the standalone deployment rather than maintaining a second copy
+  of the registry.
+- The independently deployed Radar service is mounted behind the Builder Site's
+  `/directory` path as a Next.js multi-zone. It is an implementation boundary,
+  not a second visitor-facing domain. Updating this repository's generated
+  snapshots updates the unified directory after deployment.
 
 ## What you can browse
 
@@ -44,7 +57,7 @@ top-level product category.**
 - an optional project-suggestion form. Private learning goals never enter the
   public catalog.
 
-Open the live directory at **[eduos-github-radar.vercel.app](https://eduos-github-radar.vercel.app)**.
+Open the directory through **[Edu AI Builders](https://edu-ai-builders-site.vercel.app/directory)**.
 
 ## Trust boundary
 

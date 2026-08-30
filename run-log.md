@@ -131,3 +131,40 @@
   structural errors), rebuilt the allowlisted public snapshot, and copied it to
   the React UI. The public catalog now has 1,011 entries, including 99 datasets
   and 28 benchmarks. No source code was cloned, downloaded, or analyzed.
+
+## 2026-08-17 — scheduled metadata refresh
+
+- Checked `github-radar/` status before work; preserved the pre-existing
+  untracked 2026-08-10 quality report because this run does not overwrite it.
+- The active GitHub CLI token was invalid. A one-record bounded incremental
+  refresh made zero API requests after DNS resolution also failed, so no live
+  discovery or metadata updates were incorporated.
+- Rebuilt the allowlisted public snapshot and synced the web copy from the
+  existing registry. Structural validation passed with 0 errors; the registry
+  remains 3,536 records and the public curated snapshot remains 1,011 records.
+
+## 2026-08-30 — Staff directory relink and bounded refresh
+
+- Confirmed that `edu-ai-builders/edu-ai-builders-site` embeds the standalone
+  Radar deployment at `/directory`; the Radar source was not migrated into the
+  Staff website repository. Documented this repository as the single source of
+  truth and the Staff directory as the primary visitor entry point.
+- Added an explicit source-repository link and a configurable
+  `NEXT_PUBLIC_RADAR_URL` integration contract to the Staff directory. No
+  registry or snapshot was copied into the Staff website.
+- Ran a bounded authenticated refresh of 50 existing GitHub records: 49 updated
+  successfully and `zackmillertawp1396/ai-vocab-builder-2026` returned 404. The
+  missing repository was retained as auditable source state rather than deleted.
+- Refreshed 63 first-party Skill manifests from the approved `openai/skills` and
+  `anthropics/skills` sources with no failures. The metadata registry now has
+  131 records; the education-filtered public snapshot increased from 51 to 53.
+- Rebuilt and synced both allowlisted snapshots. Project and Skills validation
+  each reported 0 structural problems. The Radar production build and the Staff
+  website lint/production build both passed.
+- Replaced the Staff directory's cross-domain iframe contract with a Next.js
+  multi-zone contract. Radar now builds with `/directory` as its base path, and
+  the Staff site proxies `/directory` plus nested assets and API routes while
+  preserving the Builder Site domain. Local end-to-end checks returned 200 for
+  the page and a proxied `/_next` asset; the suggestion API was reachable at
+  `/directory/api/suggestions` and returned the expected database-not-configured
+  response.
