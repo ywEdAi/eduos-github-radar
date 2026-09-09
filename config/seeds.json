@@ -274,5 +274,15 @@
     "source": "arxiv-paper-lead",
     "source_ref": "https://arxiv.org/abs/2502.18940",
     "notes": "Exact public repository named by the paper; GitHub metadata verification required."
+  },
+  {
+    "lead_id": "learning-sciences",
+    "label": "Learning Sciences",
+    "full_name": "ywEdAi/learning-sciences",
+    "kind_hint": "dataset",
+    "gold_seed": false,
+    "source": "maintainer-exact-lead",
+    "source_ref": "https://github.com/ywEdAi/learning-sciences",
+    "notes": "Versioned draft learning sciences knowledge compilation: 180 entries, 217 relations, 241 sources. Metadata verification is not evidence of pedagogical effectiveness. No reuse license declared at publication."
   }
 ]
