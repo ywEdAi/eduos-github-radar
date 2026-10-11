@@ -89,6 +89,71 @@ registry; presentation reads only the generated public snapshot.
 
 ## Run a refresh
 
+### Current workspace entry point (2026-10-10)
+
+This folder is currently a source/data snapshot without its own `.git`; its
+external repository lifecycle remains separate. Run collection here; do not
+commit the nested directory into the workspace wrapper or assume a data refresh
+publishes the deployed service.
+
+```bash
+cd /Users/yismacmini4/Documents/ChatGPT/Edu-Ai-Builders/apps/radar
+python3 scripts/update_directory.py --refresh-limit 30 --discover
+python3 scripts/update_directory.py --collect-builder-skills
+python3 scripts/update_directory.py --offline
+python3 scripts/query_resources.py --tag evaluation --license-observed
+python3 scripts/query_resources.py 科学 --kind dataset
+python3 scripts/query_resources.py tutor --all
+python3 scripts/test_directory.py
+python3 scripts/build_builder_index.py 科学 --limit 5
+python3 scripts/test_builder_discovery.py
+```
+
+The new entry point refreshes exact curated sources, optionally rotates the
+oldest checked records and runs one bounded discovery query, validates canonical
+registries, builds staged public snapshots and syncs their data into `web/data`.
+It uses an existing `GH_TOKEN`/`GITHUB_TOKEN` or the signed-in GitHub CLI token
+without displaying or persisting credentials. Run it sequentially; its local
+`flock` prevents concurrent runs through this entry point (macOS/Linux). Direct
+legacy crawler invocations do not acquire that lock.
+
+`--collect-builder-skills` adds bounded public-resource discovery through
+`config/builder-discovery.json`: 18 keyword families, 54 rotating queries, at
+most 8 queries, 24 manifest attempts and 100 additional GitHub API requests per
+run. It saves frontmatter and source metadata only. The generated
+`builder-index.json` unifies public repository, skill, dataset and benchmark
+records; facet hints are inferred discovery signals, not capability evidence.
+The search CLI provides an offline keyword/synonym baseline. The existing Monday
+automation now includes this flag. For the maintenance subscription proposal,
+three pilot scenarios, repo adaptation and workload-based skill fusion, see
+[the current MVP scope](../../docs/education-builder-mvp-2026-10-10.md).
+
+`data/education-resources.json` is the course-readable resource contract, with
+copies in `site/data` and `web/data`. The JSON Schema is
+`schema/course-resources.schema.json`. Its 11 initial curator-selected resources
+include source/commit URLs, activity, scoped license observations, education
+scenarios, tags, original reuse recipes and runtime conditions. The full
+discovery registry remains broader and less reviewed. `--license-observed`
+filters successful curated observations; it is not unconditional permission or
+a runtime test. Unknown/unrecognized licenses remain `needs-review`.
+
+`data/update-history.jsonl`, per-run before/after snapshots and
+`resource-changes.json` retain refresh and change history. Failed requests keep
+previous evidence and its original verification timestamp. Changed license text
+stays unverified until a curator reviews it and adds `reviewed_sha256` to the
+corresponding scope in `config/education-resources.json`. No source packages,
+Skill bodies, or dataset payloads are saved by this entry point.
+
+The existing **Weekly GitHub Radar refresh** automation was updated, rather than
+duplicated: Monday 09:00 in the user's local schedule, current project/path,
+local execution and failure-only notifications retained. This requires the Mac
+powered on, the desktop app running, the project present, Python 3.10+ and GitHub
+network access. It does not push/deploy; no cloud scheduler or database was
+enabled. See the workspace report
+[`directory.md`](../../docs/website-refresh-2026-10-10/directory.md).
+
+### Legacy collector commands
+
 Python 3.10+ is sufficient for collection and validation; the Python tools have
 no third-party dependencies. Use a read-only GitHub token for larger runs, but
 never commit it.
@@ -182,3 +247,13 @@ code together so that the public directory can be inspected, reproduced and
 improved in the open. Refer to each listed project's own license and source
 before reuse; Radar records observed license metadata but does not grant rights
 on a project's behalf.
+
+### 2026-10-10 trial entries and paper prototype
+
+`data/builder-resources.json` (`radar.builder-resources.v1`) contains 13 curated entries, 2 observed official hosted trial pages (OpenMAIC public preview, RAGFlow account required). `primary_action.kind` distinguishes demo, setup, course, data and Skill reading. Availability checks do not establish generation quality; local commands are untested. `web/app` renders a bilingual curated shelf with steps, requirements and source links.
+
+`data/discovery-feed.json` (`radar.discovery-feed.v1`) projects 81 records into common resource_id/kind/title/source_url/verified_at/tags/description/primary_action fields. Detailed builder and paper collections remain separate. Source URLs are never inferred to be demos. Public exports contain no user preferences or recommendation state. Run `python3 scripts/build_discovery_feed.py` after fetching papers; directory exports also rebuild this feed.
+
+For the actual upstream arXiv comparison, pinned MIT implementation and reproducible commands, see [docs/arxiv-recommendations.md](docs/arxiv-recommendations.md). The sample contains 68 metadata records and 5 local recommendations. Frequency and unsubscribe are local preview controls; there is no signup endpoint, delivery service or daily sending automation. Existing weekly GitHub refresh remains unchanged in frequency and does not run the paper fetcher. arXiv requests are serialized and throttled to at least 3.1 seconds apart; the lock now covers snapshot read/write as well as requests.
+
+Verification: 11 directory tests, 7 paper tests and `npm run build` passed.

@@ -1,5 +1,17 @@
 # Skills catalog roadmap
 
+## 2026-10-10 product scope update
+
+The user has expanded the product plan to an education-specific marketplace and
+resource assistant, with maintenance subscriptions, creator submissions, search,
+design/planning, repository adaptation and workload-based skill fusion. The
+[current MVP scope](../../../docs/education-builder-mvp-2026-10-10.md) supersedes
+the earlier product restriction below. Current collection remains metadata-only;
+marketplace transactions, deep source analysis and Skill execution are proposed
+separate workflows, not enabled by the collector. Bounded community discovery is
+now configured in `config/builder-discovery.json`, alongside the existing curated
+`config/skill-sources.json` sources.
+
 ## Product boundary
 
 The Skills catalog is an education-oriented, metadata-only directory within

@@ -30,6 +30,13 @@ API_ROOT = "https://api.github.com"
 SCHEMA_VERSION = "github-radar.registry.v1"
 
 
+class GitHubAPIError(RuntimeError):
+    """Carry HTTP status without interpreting 404 as proof of deletion."""
+    def __init__(self, status: int, url: str, message: str):
+        self.status = status
+        super().__init__(f"GitHub API {status} for {url}: {message[:500]}")
+
+
 def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
@@ -275,7 +282,7 @@ class GitHubClient:
                     return None, headers, 404
                 if error.code not in (403, 429, 500, 502, 503, 504) or attempt >= self.max_retries:
                     message = error.read().decode("utf-8", errors="replace")
-                    raise RuntimeError(f"GitHub API {error.code} for {url}: {message[:500]}") from error
+                    raise GitHubAPIError(error.code, url, message) from error
                 wait_seconds = self._retry_wait(headers, attempt)
                 if wait_seconds > self.max_wait:
                     raise RuntimeError(
@@ -695,7 +702,8 @@ def command_refresh(args, registry: Registry, client: GitHubClient) -> dict:
     records = [
         record
         for record in registry.records.values()
-        if record.get("verification_status") == "verified" and record.get("full_name")
+        if record.get("verification_status") in {"verified", "missing", "error"}
+        and record.get("github_repo_id") and record.get("full_name")
     ]
     records.sort(key=lambda record: record.get("checked_at") or "")
     if args.limit is not None:
@@ -715,6 +723,10 @@ def command_refresh(args, registry: Registry, client: GitHubClient) -> dict:
             if incoming is None:
                 existing["checked_at"] = utc_now()
                 existing["last_seen"] = existing["checked_at"]
+                # A conditional 304 also proves a previously unavailable repo is accessible again.
+                existing["verification_status"] = "verified"
+                existing["last_check_status"] = "ok"
+                existing.pop("last_error", None)
                 unchanged += 1
             else:
                 provenance = make_provenance(
@@ -727,6 +739,11 @@ def command_refresh(args, registry: Registry, client: GitHubClient) -> dict:
                 updated += 1
         except Exception as error:
             existing["last_error"] = str(error)
+            existing["checked_at"] = utc_now()
+            existing["last_check_status"] = "error"
+            if isinstance(error, GitHubAPIError) and error.status == 404:
+                existing["verification_status"] = "missing"
+                existing["last_check_status"] = "unavailable"
             errors.append({"full_name": existing["full_name"], "error": str(error)})
         finally:
             registry.save()

@@ -27,6 +27,8 @@ EDUCATION_SIGNAL = re.compile(
 
 def is_public_radar_record(record: dict) -> bool:
     """Keep a public education-facing view of the wider discovery registry."""
+    if record.get("verification_status") in {"missing", "error"}:
+        return False
     if any(item.get("lead_id") for item in record.get("provenance", [])):
         return True
     searchable = " ".join(

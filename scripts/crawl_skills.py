@@ -63,7 +63,8 @@ def parse_frontmatter(markdown: str) -> tuple[str | None, str | None]:
             active = None
             continue
         active, value = match.groups()
-        fields[active] = value.strip().strip("\"'")
+        value = value.strip()
+        fields[active] = '' if active == 'description' and value in {'|', '|-', '|+', '>', '>-', '>+'} else value.strip("\"'")
     return fields.get("name") or None, fields.get("description") or None
 
 

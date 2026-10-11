@@ -27,6 +27,9 @@ EDUCATION_SKILL_SIGNAL = re.compile(
 
 
 def is_public_education_skill(record: dict) -> bool:
+    if record.get('builder_discovery_hints'):
+        # Includes shared building skills; query hints do not establish teaching quality.
+        return True
     searchable = " ".join(
         filter(
             None,
@@ -57,7 +60,7 @@ def main() -> int:
             "ecosystems": dict(Counter(ecosystem for record in visible_records for ecosystem in record.get("ecosystems", []))),
             "sources": dict(Counter(record.get("source_repository", {}).get("full_name") for record in visible_records)),
         },
-        "collection_note": "Education-oriented metadata only: public SKILL.md frontmatter and repository metadata. No instruction bodies, scripts, or skill packages are stored.",
+        "collection_note": "Education and builder discovery metadata: public SKILL.md frontmatter and repository metadata. Query facets are hints, not verified capabilities or teaching quality. No instruction bodies, scripts, or skill packages are stored.",
         "records": visible_records,
     }
     temporary = output.with_suffix(".json.tmp")

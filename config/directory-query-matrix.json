@@ -1,0 +1,9 @@
+[
+  {
+    "id": "directory-education-dataset",
+    "family": "dataset-benchmark",
+    "query": "dataset education in:name,description stars:>=3 archived:false",
+    "kind_hint": "dataset",
+    "enabled": true
+  }
+]

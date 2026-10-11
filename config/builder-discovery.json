@@ -1,0 +1,1042 @@
+{
+  "schema_version": "radar.builder-discovery.v1",
+  "facets": [
+    "audiences",
+    "subjects",
+    "platforms",
+    "scenarios",
+    "capabilities"
+  ],
+  "families": [
+    {
+      "id": "parents",
+      "keywords": [
+        "parent",
+        "homeschool",
+        "家长",
+        "家庭教育"
+      ],
+      "audiences": [
+        "parents"
+      ],
+      "scenarios": [
+        "home-learning"
+      ]
+    },
+    {
+      "id": "teachers",
+      "keywords": [
+        "teacher",
+        "lesson planning",
+        "rubric",
+        "教师",
+        "备课"
+      ],
+      "audiences": [
+        "teachers"
+      ],
+      "scenarios": [
+        "lesson-design",
+        "feedback"
+      ]
+    },
+    {
+      "id": "higher-education",
+      "keywords": [
+        "university",
+        "higher education",
+        "academic",
+        "高校"
+      ],
+      "audiences": [
+        "higher-education"
+      ],
+      "scenarios": [
+        "course-design"
+      ]
+    },
+    {
+      "id": "research",
+      "keywords": [
+        "research",
+        "literature review",
+        "citation",
+        "研究",
+        "文献"
+      ],
+      "audiences": [
+        "researchers"
+      ],
+      "scenarios": [
+        "research"
+      ],
+      "capabilities": [
+        "literature",
+        "evidence"
+      ]
+    },
+    {
+      "id": "mathematics",
+      "keywords": [
+        "math",
+        "algebra",
+        "geometry",
+        "calculus",
+        "数学"
+      ],
+      "subjects": [
+        "mathematics"
+      ],
+      "scenarios": [
+        "practice",
+        "tutoring"
+      ]
+    },
+    {
+      "id": "science",
+      "keywords": [
+        "science",
+        "physics",
+        "chemistry",
+        "biology",
+        "科学",
+        "物理",
+        "化学",
+        "生物"
+      ],
+      "subjects": [
+        "science"
+      ],
+      "scenarios": [
+        "simulation",
+        "inquiry"
+      ]
+    },
+    {
+      "id": "languages",
+      "keywords": [
+        "language learning",
+        "ESL",
+        "reading",
+        "writing",
+        "语言",
+        "阅读",
+        "写作"
+      ],
+      "subjects": [
+        "languages"
+      ],
+      "scenarios": [
+        "reading",
+        "writing-feedback"
+      ]
+    },
+    {
+      "id": "humanities",
+      "keywords": [
+        "history",
+        "geography",
+        "social science",
+        "civics",
+        "历史",
+        "地理"
+      ],
+      "subjects": [
+        "humanities"
+      ],
+      "scenarios": [
+        "source-analysis"
+      ]
+    },
+    {
+      "id": "arts",
+      "keywords": [
+        "music",
+        "art",
+        "design education",
+        "艺术",
+        "音乐"
+      ],
+      "subjects": [
+        "arts"
+      ],
+      "scenarios": [
+        "creative-practice"
+      ]
+    },
+    {
+      "id": "computing",
+      "keywords": [
+        "coding education",
+        "programming",
+        "STEM",
+        "计算机",
+        "编程"
+      ],
+      "subjects": [
+        "computing"
+      ],
+      "scenarios": [
+        "project-learning"
+      ]
+    },
+    {
+      "id": "accessibility",
+      "keywords": [
+        "accessibility",
+        "inclusive",
+        "special education",
+        "UDL",
+        "无障碍",
+        "特殊教育"
+      ],
+      "capabilities": [
+        "accessibility"
+      ],
+      "scenarios": [
+        "inclusive-learning"
+      ]
+    },
+    {
+      "id": "web",
+      "keywords": [
+        "web app",
+        "frontend",
+        "React",
+        "Next.js",
+        "PWA",
+        "网页"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "capabilities": [
+        "ui",
+        "frontend"
+      ]
+    },
+    {
+      "id": "mobile",
+      "keywords": [
+        "mobile",
+        "iOS",
+        "Android",
+        "SwiftUI",
+        "Flutter",
+        "React Native",
+        "移动应用"
+      ],
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "capabilities": [
+        "mobile-ui",
+        "offline"
+      ]
+    },
+    {
+      "id": "desktop",
+      "keywords": [
+        "desktop",
+        "macOS",
+        "Windows",
+        "Electron",
+        "Tauri",
+        "桌面"
+      ],
+      "platforms": [
+        "desktop"
+      ],
+      "capabilities": [
+        "desktop-ui"
+      ]
+    },
+    {
+      "id": "design",
+      "keywords": [
+        "design system",
+        "aesthetics",
+        "interaction",
+        "visualization",
+        "美学",
+        "交互"
+      ],
+      "capabilities": [
+        "visual-design",
+        "interaction",
+        "visualization"
+      ]
+    },
+    {
+      "id": "data",
+      "keywords": [
+        "data integration",
+        "RAG",
+        "database",
+        "assessment",
+        "evaluation",
+        "LTI",
+        "QTI",
+        "xAPI",
+        "数据关联",
+        "评测"
+      ],
+      "capabilities": [
+        "data-integration",
+        "retrieval",
+        "evaluation",
+        "interoperability"
+      ]
+    },
+    {
+      "id": "skill-authoring",
+      "keywords": [
+        "skill fusion",
+        "skill creator",
+        "技能融合",
+        "技能编写"
+      ],
+      "capabilities": [
+        "skill-authoring"
+      ]
+    },
+    {
+      "id": "repo-adaptation",
+      "keywords": [
+        "refactor",
+        "refactoring",
+        "repo analysis",
+        "redesign",
+        "重构"
+      ],
+      "capabilities": [
+        "repo-adaptation"
+      ]
+    }
+  ],
+  "budgets": {
+    "queries_per_run": 8,
+    "results_per_query": 8,
+    "sample_per_query": 2,
+    "max_query_pages": 3,
+    "manifest_attempts": 24,
+    "api_requests": 100
+  },
+  "sources": [
+    {
+      "source_id": "builder-rea",
+      "repository": "morluto/rea",
+      "skill_root": ".agents/skills",
+      "capabilities": [
+        "feature-analysis",
+        "evidence"
+      ]
+    },
+    {
+      "source_id": "builder-vercel-finder",
+      "repository": "vercel-labs/skills",
+      "skill_root": "skills",
+      "capabilities": [
+        "skill-discovery"
+      ]
+    },
+    {
+      "source_id": "builder-vercel-design",
+      "repository": "vercel-labs/agent-skills",
+      "skill_root": "skills",
+      "platforms": [
+        "web"
+      ],
+      "capabilities": [
+        "frontend",
+        "visual-design"
+      ]
+    },
+    {
+      "source_id": "builder-openai",
+      "repository": "openai/skills",
+      "skill_root": "skills",
+      "capabilities": [
+        "documents",
+        "data",
+        "design"
+      ]
+    },
+    {
+      "source_id": "builder-anthropic",
+      "repository": "anthropics/skills",
+      "skill_root": "skills",
+      "capabilities": [
+        "documents",
+        "design",
+        "skill-authoring"
+      ]
+    },
+    {
+      "source_id": "builder-skill-fuse",
+      "repository": "gaia-research/skill-fuse",
+      "skill_root": "",
+      "capabilities": [
+        "skill-authoring"
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "query_id": "builder-parents-english",
+      "family": "parents",
+      "kind": "skill",
+      "query": "filename:SKILL.md homeschooling",
+      "audiences": [
+        "parents"
+      ],
+      "scenarios": [
+        "home-learning"
+      ]
+    },
+    {
+      "query_id": "builder-parents-alternate",
+      "family": "parents",
+      "kind": "skill",
+      "query": "filename:SKILL.md 家长",
+      "audiences": [
+        "parents"
+      ],
+      "scenarios": [
+        "home-learning"
+      ]
+    },
+    {
+      "query_id": "builder-parents-repos",
+      "family": "parents",
+      "kind": "repo",
+      "query": "homeschool learning in:name,description,readme archived:false",
+      "audiences": [
+        "parents"
+      ],
+      "scenarios": [
+        "home-learning"
+      ]
+    },
+    {
+      "query_id": "builder-teachers-english",
+      "family": "teachers",
+      "kind": "skill",
+      "query": "filename:SKILL.md lesson",
+      "audiences": [
+        "teachers"
+      ],
+      "scenarios": [
+        "lesson-design",
+        "feedback"
+      ]
+    },
+    {
+      "query_id": "builder-teachers-alternate",
+      "family": "teachers",
+      "kind": "skill",
+      "query": "filename:SKILL.md 教学",
+      "audiences": [
+        "teachers"
+      ],
+      "scenarios": [
+        "lesson-design",
+        "feedback"
+      ]
+    },
+    {
+      "query_id": "builder-teachers-repos",
+      "family": "teachers",
+      "kind": "repo",
+      "query": "lesson education in:name,description,readme archived:false",
+      "audiences": [
+        "teachers"
+      ],
+      "scenarios": [
+        "lesson-design",
+        "feedback"
+      ]
+    },
+    {
+      "query_id": "builder-higher-education-english",
+      "family": "higher-education",
+      "kind": "skill",
+      "query": "filename:SKILL.md academic",
+      "audiences": [
+        "higher-education"
+      ],
+      "scenarios": [
+        "course-design"
+      ]
+    },
+    {
+      "query_id": "builder-higher-education-alternate",
+      "family": "higher-education",
+      "kind": "skill",
+      "query": "filename:SKILL.md 大学",
+      "audiences": [
+        "higher-education"
+      ],
+      "scenarios": [
+        "course-design"
+      ]
+    },
+    {
+      "query_id": "builder-higher-education-repos",
+      "family": "higher-education",
+      "kind": "repo",
+      "query": "university education in:name,description,readme archived:false",
+      "audiences": [
+        "higher-education"
+      ],
+      "scenarios": [
+        "course-design"
+      ]
+    },
+    {
+      "query_id": "builder-research-english",
+      "family": "research",
+      "kind": "skill",
+      "query": "filename:SKILL.md research",
+      "audiences": [
+        "researchers"
+      ],
+      "scenarios": [
+        "research"
+      ],
+      "capabilities": [
+        "literature",
+        "evidence"
+      ]
+    },
+    {
+      "query_id": "builder-research-alternate",
+      "family": "research",
+      "kind": "skill",
+      "query": "filename:SKILL.md 文献",
+      "audiences": [
+        "researchers"
+      ],
+      "scenarios": [
+        "research"
+      ],
+      "capabilities": [
+        "literature",
+        "evidence"
+      ]
+    },
+    {
+      "query_id": "builder-research-repos",
+      "family": "research",
+      "kind": "repo",
+      "query": "research education in:name,description,readme archived:false",
+      "audiences": [
+        "researchers"
+      ],
+      "scenarios": [
+        "research"
+      ],
+      "capabilities": [
+        "literature",
+        "evidence"
+      ]
+    },
+    {
+      "query_id": "builder-mathematics-english",
+      "family": "mathematics",
+      "kind": "skill",
+      "query": "filename:SKILL.md math",
+      "subjects": [
+        "mathematics"
+      ],
+      "scenarios": [
+        "practice",
+        "tutoring"
+      ]
+    },
+    {
+      "query_id": "builder-mathematics-alternate",
+      "family": "mathematics",
+      "kind": "skill",
+      "query": "filename:SKILL.md 数学",
+      "subjects": [
+        "mathematics"
+      ],
+      "scenarios": [
+        "practice",
+        "tutoring"
+      ]
+    },
+    {
+      "query_id": "builder-mathematics-repos",
+      "family": "mathematics",
+      "kind": "repo",
+      "query": "math tutor in:name,description,readme archived:false",
+      "subjects": [
+        "mathematics"
+      ],
+      "scenarios": [
+        "practice",
+        "tutoring"
+      ]
+    },
+    {
+      "query_id": "builder-science-english",
+      "family": "science",
+      "kind": "skill",
+      "query": "filename:SKILL.md science",
+      "subjects": [
+        "science"
+      ],
+      "scenarios": [
+        "simulation",
+        "inquiry"
+      ]
+    },
+    {
+      "query_id": "builder-science-alternate",
+      "family": "science",
+      "kind": "skill",
+      "query": "filename:SKILL.md 物理",
+      "subjects": [
+        "science"
+      ],
+      "scenarios": [
+        "simulation",
+        "inquiry"
+      ]
+    },
+    {
+      "query_id": "builder-science-repos",
+      "family": "science",
+      "kind": "repo",
+      "query": "science education in:name,description,readme archived:false",
+      "subjects": [
+        "science"
+      ],
+      "scenarios": [
+        "simulation",
+        "inquiry"
+      ]
+    },
+    {
+      "query_id": "builder-languages-english",
+      "family": "languages",
+      "kind": "skill",
+      "query": "filename:SKILL.md language learning",
+      "subjects": [
+        "languages"
+      ],
+      "scenarios": [
+        "reading",
+        "writing-feedback"
+      ]
+    },
+    {
+      "query_id": "builder-languages-alternate",
+      "family": "languages",
+      "kind": "skill",
+      "query": "filename:SKILL.md 写作",
+      "subjects": [
+        "languages"
+      ],
+      "scenarios": [
+        "reading",
+        "writing-feedback"
+      ]
+    },
+    {
+      "query_id": "builder-languages-repos",
+      "family": "languages",
+      "kind": "repo",
+      "query": "language learning in:name,description,readme archived:false",
+      "subjects": [
+        "languages"
+      ],
+      "scenarios": [
+        "reading",
+        "writing-feedback"
+      ]
+    },
+    {
+      "query_id": "builder-humanities-english",
+      "family": "humanities",
+      "kind": "skill",
+      "query": "filename:SKILL.md history",
+      "subjects": [
+        "humanities"
+      ],
+      "scenarios": [
+        "source-analysis"
+      ]
+    },
+    {
+      "query_id": "builder-humanities-alternate",
+      "family": "humanities",
+      "kind": "skill",
+      "query": "filename:SKILL.md 地理",
+      "subjects": [
+        "humanities"
+      ],
+      "scenarios": [
+        "source-analysis"
+      ]
+    },
+    {
+      "query_id": "builder-humanities-repos",
+      "family": "humanities",
+      "kind": "repo",
+      "query": "history education in:name,description,readme archived:false",
+      "subjects": [
+        "humanities"
+      ],
+      "scenarios": [
+        "source-analysis"
+      ]
+    },
+    {
+      "query_id": "builder-arts-english",
+      "family": "arts",
+      "kind": "skill",
+      "query": "filename:SKILL.md music",
+      "subjects": [
+        "arts"
+      ],
+      "scenarios": [
+        "creative-practice"
+      ]
+    },
+    {
+      "query_id": "builder-arts-alternate",
+      "family": "arts",
+      "kind": "skill",
+      "query": "filename:SKILL.md 艺术",
+      "subjects": [
+        "arts"
+      ],
+      "scenarios": [
+        "creative-practice"
+      ]
+    },
+    {
+      "query_id": "builder-arts-repos",
+      "family": "arts",
+      "kind": "repo",
+      "query": "music education in:name,description,readme archived:false",
+      "subjects": [
+        "arts"
+      ],
+      "scenarios": [
+        "creative-practice"
+      ]
+    },
+    {
+      "query_id": "builder-computing-english",
+      "family": "computing",
+      "kind": "skill",
+      "query": "filename:SKILL.md coding",
+      "subjects": [
+        "computing"
+      ],
+      "scenarios": [
+        "project-learning"
+      ]
+    },
+    {
+      "query_id": "builder-computing-alternate",
+      "family": "computing",
+      "kind": "skill",
+      "query": "filename:SKILL.md 编程",
+      "subjects": [
+        "computing"
+      ],
+      "scenarios": [
+        "project-learning"
+      ]
+    },
+    {
+      "query_id": "builder-computing-repos",
+      "family": "computing",
+      "kind": "repo",
+      "query": "programming education in:name,description,readme archived:false",
+      "subjects": [
+        "computing"
+      ],
+      "scenarios": [
+        "project-learning"
+      ]
+    },
+    {
+      "query_id": "builder-accessibility-english",
+      "family": "accessibility",
+      "kind": "skill",
+      "query": "filename:SKILL.md accessibility",
+      "capabilities": [
+        "accessibility"
+      ],
+      "scenarios": [
+        "inclusive-learning"
+      ]
+    },
+    {
+      "query_id": "builder-accessibility-alternate",
+      "family": "accessibility",
+      "kind": "skill",
+      "query": "filename:SKILL.md 无障碍",
+      "capabilities": [
+        "accessibility"
+      ],
+      "scenarios": [
+        "inclusive-learning"
+      ]
+    },
+    {
+      "query_id": "builder-accessibility-repos",
+      "family": "accessibility",
+      "kind": "repo",
+      "query": "accessibility education in:name,description,readme archived:false",
+      "capabilities": [
+        "accessibility"
+      ],
+      "scenarios": [
+        "inclusive-learning"
+      ]
+    },
+    {
+      "query_id": "builder-web-english",
+      "family": "web",
+      "kind": "skill",
+      "query": "filename:SKILL.md frontend",
+      "platforms": [
+        "web"
+      ],
+      "capabilities": [
+        "ui",
+        "frontend"
+      ]
+    },
+    {
+      "query_id": "builder-web-alternate",
+      "family": "web",
+      "kind": "skill",
+      "query": "filename:SKILL.md web app",
+      "platforms": [
+        "web"
+      ],
+      "capabilities": [
+        "ui",
+        "frontend"
+      ]
+    },
+    {
+      "query_id": "builder-web-repos",
+      "family": "web",
+      "kind": "repo",
+      "query": "education web app in:name,description,readme archived:false",
+      "platforms": [
+        "web"
+      ],
+      "capabilities": [
+        "ui",
+        "frontend"
+      ]
+    },
+    {
+      "query_id": "builder-mobile-english",
+      "family": "mobile",
+      "kind": "skill",
+      "query": "filename:SKILL.md mobile",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "capabilities": [
+        "mobile-ui",
+        "offline"
+      ]
+    },
+    {
+      "query_id": "builder-mobile-alternate",
+      "family": "mobile",
+      "kind": "skill",
+      "query": "filename:SKILL.md SwiftUI",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "capabilities": [
+        "mobile-ui",
+        "offline"
+      ]
+    },
+    {
+      "query_id": "builder-mobile-repos",
+      "family": "mobile",
+      "kind": "repo",
+      "query": "education mobile in:name,description,readme archived:false",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "capabilities": [
+        "mobile-ui",
+        "offline"
+      ]
+    },
+    {
+      "query_id": "builder-desktop-english",
+      "family": "desktop",
+      "kind": "skill",
+      "query": "filename:SKILL.md Electron",
+      "platforms": [
+        "desktop"
+      ],
+      "capabilities": [
+        "desktop-ui"
+      ]
+    },
+    {
+      "query_id": "builder-desktop-alternate",
+      "family": "desktop",
+      "kind": "skill",
+      "query": "filename:SKILL.md Tauri",
+      "platforms": [
+        "desktop"
+      ],
+      "capabilities": [
+        "desktop-ui"
+      ]
+    },
+    {
+      "query_id": "builder-desktop-repos",
+      "family": "desktop",
+      "kind": "repo",
+      "query": "education desktop in:name,description,readme archived:false",
+      "platforms": [
+        "desktop"
+      ],
+      "capabilities": [
+        "desktop-ui"
+      ]
+    },
+    {
+      "query_id": "builder-design-english",
+      "family": "design",
+      "kind": "skill",
+      "query": "filename:SKILL.md design system",
+      "capabilities": [
+        "visual-design",
+        "interaction",
+        "visualization"
+      ]
+    },
+    {
+      "query_id": "builder-design-alternate",
+      "family": "design",
+      "kind": "skill",
+      "query": "filename:SKILL.md visualization",
+      "capabilities": [
+        "visual-design",
+        "interaction",
+        "visualization"
+      ]
+    },
+    {
+      "query_id": "builder-design-repos",
+      "family": "design",
+      "kind": "repo",
+      "query": "education visualization in:name,description,readme archived:false",
+      "capabilities": [
+        "visual-design",
+        "interaction",
+        "visualization"
+      ]
+    },
+    {
+      "query_id": "builder-data-english",
+      "family": "data",
+      "kind": "skill",
+      "query": "filename:SKILL.md evaluation",
+      "capabilities": [
+        "data-integration",
+        "retrieval",
+        "evaluation",
+        "interoperability"
+      ]
+    },
+    {
+      "query_id": "builder-data-alternate",
+      "family": "data",
+      "kind": "skill",
+      "query": "filename:SKILL.md RAG",
+      "capabilities": [
+        "data-integration",
+        "retrieval",
+        "evaluation",
+        "interoperability"
+      ]
+    },
+    {
+      "query_id": "builder-data-repos",
+      "family": "data",
+      "kind": "repo",
+      "query": "education assessment in:name,description,readme archived:false",
+      "capabilities": [
+        "data-integration",
+        "retrieval",
+        "evaluation",
+        "interoperability"
+      ]
+    },
+    {
+      "query_id": "builder-skill-authoring-1",
+      "kind": "skill",
+      "query": "filename:SKILL.md fusion",
+      "capabilities": [
+        "skill-authoring"
+      ]
+    },
+    {
+      "query_id": "builder-skill-authoring-2",
+      "kind": "skill",
+      "query": "filename:SKILL.md 技能融合",
+      "capabilities": [
+        "skill-authoring"
+      ]
+    },
+    {
+      "query_id": "builder-skill-authoring-3",
+      "kind": "repo",
+      "query": "skill fusion in:name,description,readme archived:false",
+      "capabilities": [
+        "skill-authoring"
+      ]
+    },
+    {
+      "query_id": "builder-repo-adaptation-1",
+      "kind": "skill",
+      "query": "filename:SKILL.md refactor",
+      "capabilities": [
+        "repo-adaptation"
+      ]
+    },
+    {
+      "query_id": "builder-repo-adaptation-2",
+      "kind": "skill",
+      "query": "filename:SKILL.md 重构",
+      "capabilities": [
+        "repo-adaptation"
+      ]
+    },
+    {
+      "query_id": "builder-repo-adaptation-3",
+      "kind": "repo",
+      "query": "repository analysis in:name,description,readme archived:false",
+      "capabilities": [
+        "repo-adaptation"
+      ]
+    }
+  ],
+  "note": "Keywords and query facets are discovery hints, not confirmed capabilities, compatibility or redistribution rights."
+}
